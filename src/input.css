@@ -1,5 +1,5 @@
-@import "tailwindcss";
 
-h1{
-  background-color: "blue";
+@import "tailwindcss";
+.hidden-custom {
+  display: none;
 }
