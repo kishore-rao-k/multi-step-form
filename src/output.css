@@ -1261,9 +1261,6 @@
   .bg-\[\#103c63\] {
     background-color: #103c63;
   }
-  .bg-\[\#164988\] {
-    background-color: #164988;
-  }
   .bg-\[\#F0F5FF\] {
     background-color: #F0F5FF;
   }
@@ -1327,35 +1324,8 @@
     --tw-gradient-position: in oklab;
     background-image: radial-gradient(var(--tw-gradient-stops));
   }
-  .bg-\[url\(\'\.\/assets\/images\/\'\)\] {
-    background-image: url('./assets/images/');
-  }
-  .bg-\[url\(\'\.\/assets\/images\/bg-sidebar-deskt\'\)\] {
-    background-image: url('./assets/images/bg-sidebar-deskt');
-  }
   .bg-\[url\(\'\.\/assets\/images\/bg-sidebar-desktop\.svg\'\)\] {
     background-image: url('./assets/images/bg-sidebar-desktop.svg');
-  }
-  .bg-\[url\(\'\.\/assets\/images\/i\'\)\] {
-    background-image: url('./assets/images/i');
-  }
-  .bg-\[url\(\'\.\/assets\/images\/icon\'\)\] {
-    background-image: url('./assets/images/icon');
-  }
-  .bg-\[url\(\'\.\/assets\/images\/icon-\.svg\'\)\] {
-    background-image: url('./assets/images/icon-.svg');
-  }
-  .bg-\[url\(\'\.\/assets\/images\/icon-advanced\.svg\'\)\] {
-    background-image: url('./assets/images/icon-advanced.svg');
-  }
-  .bg-\[url\(\'\.\/assets\/images\/icon-ar\'\)\] {
-    background-image: url('./assets/images/icon-ar');
-  }
-  .bg-\[url\(\'\.\/assets\/images\/icon-arcade\'\)\] {
-    background-image: url('./assets/images/icon-arcade');
-  }
-  .bg-\[url\(\'\.\/assets\/images\/icon-arcade\.svg\'\)\] {
-    background-image: url('./assets/images/icon-arcade.svg');
   }
   .bg-none {
     background-image: none;
@@ -2293,13 +2263,6 @@
       }
     }
   }
-  .hover\:bg-\[\#103c63\] {
-    &:hover {
-      @media (hover: hover) {
-        background-color: #103c63;
-      }
-    }
-  }
   .hover\:bg-\[\#164988\] {
     &:hover {
       @media (hover: hover) {
@@ -2307,38 +2270,10 @@
       }
     }
   }
-  .hover\:bg-\[\#\] {
-    &:hover {
-      @media (hover: hover) {
-        background-color: #;
-      }
-    }
-  }
   .hover\:bg-amber-200 {
     &:hover {
       @media (hover: hover) {
         background-color: var(--color-amber-200);
-      }
-    }
-  }
-  .hover\:bg-blue-600 {
-    &:hover {
-      @media (hover: hover) {
-        background-color: var(--color-blue-600);
-      }
-    }
-  }
-  .hover\:bg-blue-700 {
-    &:hover {
-      @media (hover: hover) {
-        background-color: var(--color-blue-700);
-      }
-    }
-  }
-  .hover\:underline {
-    &:hover {
-      @media (hover: hover) {
-        text-decoration-line: underline;
       }
     }
   }

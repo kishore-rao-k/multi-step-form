@@ -10,75 +10,116 @@
 <body>
     <!-- Step 1: Plan Selection -->
     <div id="form-pageID">
-        <div id="monthly-plan">Monthly
-            <div id="arc-m">
-                <p id="arcNamem" class="font-semibold text-gray-900 mt-14">Arcade</p>
-                <p id="arc-m-amount" class="text-gray-500 plan border-2 hover:bg-amber-200" data-monthly-price="20"
-                    data-yearly-price="100">$20/mo</p>
+        <!-- Monthly Plan -->
+        <div id="monthly-plan">
+            <div>
+                <input type="radio" id="arc-m" name="plan" value="arcade" class="plan-radio" data-name="Arcade"
+                    data-monthly-price="100" data-yearly-price="1000">
+                <label for="arc-m">
+                    <p class="font-semibold text-gray-900 mt-14">Arcade</p>
+                    <p class="text-gray-500 plan border-2 hover:bg-amber-200" data-monthly-price="100"
+                        data-yearly-price="1000">
+                        $100/yr
+                    </p>
+                </label>
             </div>
-            <div id="adv-m">
-                <p id="advNamem" class="font-semibold text-gray-900 mt-14">Adv</p>
-                <p id="adv-m-amount" class="text-gray-500 plan border-2 hover:bg-amber-200" data-monthly-price="25"
-                    data-yearly-price="150">$25/mo</p>
+            <div>
+                <!-- Advanced Plan -->
+                <input type="radio" id="adv-m" name="plan" value="advanced" class="plan-radio" data-name="Advanced"
+                    data-monthly-price="150" data-yearly-price="1500">
+                <label for="adv-m">
+                    <p class="font-semibold text-gray-900 mt-14">Adv</p>
+                    <p class="text-gray-500 plan border-2 hover:bg-amber-200" data-monthly-price="150"
+                        data-yearly-price="1500">
+                        $150/yr
+                    </p>
+                </label>
             </div>
-            <div id="pro-m">
-                <p id="proNamem" class="font-semibold text-gray-900 mt-14">Pro</p>
-                <p id="pro-m-amount" class="text-gray-500 plan border-2 hover:bg-amber-200" data-monthly-price="30"
-                    data-yearly-price="200">$30/mo</p>
+
+            <div>
+                <!-- Pro Plan -->
+                <input type="radio" id="pro-m" name="plan" value="pro" class="plan-radio" data-name="Pro"
+                    data-monthly-price="200" data-yearly-price="2000">
+                <label for="pro-m">
+                    <p class="font-semibold text-gray-900 mt-14">Pro</p>
+                    <p class="text-gray-500 plan border-2 hover:bg-amber-200" data-monthly-price="200"
+                        data-yearly-price="2000">
+                        $200/yr
+                    </p>
+                </label>
             </div>
+
+        </div>
+        <!-- Yearly Plan -->
+        <div id="yearly-plan" class="hidden">
+            <div>
+                <!-- Arcade Plan Yearly -->
+                <input type="radio" id="arc-yearly" name="plan" value="arcade" class="plan-radio" data-name="Arcade"
+                    data-yearly-price="1000">
+                <label for="arc-yearly">
+                    <p class="font-semibold text-gray-900 mt-14">Arcade</p>
+                    <p class="text-gray-500 plan border-2 hover:bg-amber-200" data-yearly-price="1000">$1000/yr</p>
+                </label>
+            </div>
+
+            <div>
+                <!-- Advanced Plan Yearly -->
+                <input type="radio" id="adv-yearly" name="plan" value="advanced" class="plan-radio" data-name="Advanced"
+                    data-yearly-price="1500">
+                <label for="adv-yearly">
+                    <p class="font-semibold text-gray-900 mt-14">Adv</p>
+                    <p class="text-gray-500 plan border-2 hover:bg-amber-200" data-yearly-price="1500">$1500/yr</p>
+                </label>
+            </div>
+
+            <div>
+                <!-- Pro Plan Yearly -->
+                <input type="radio" id="pro-yearly" name="plan" value="pro" class="plan-radio" data-name="Pro"
+                    data-yearly-price="2000">
+                <label for="pro-yearly">
+                    <p class="font-semibold text-gray-900 mt-14">Pro</p>
+                    <p class="text-gray-500 plan border-2 hover:bg-amber-200" data-yearly-price="2000">$2000/yr</p>
+                </label>
+            </div>
+
         </div>
 
-        <div id="yearly-plan">Yearly
-            <div id="arc-yearly">
-                <p id="arcName" class="font-semibold text-gray-900 mt-14">Arcade</p>
-                <p id="arc-yearly-amount" class="text-gray-500 plan border-2 hover:bg-amber-200" data-monthly-price="90"
-                    data-yearly-price="1000">$1000/yr</p>
-            </div>
-            <div id="adv-yearly">
-                <p id="advName" class="font-semibold text-gray-900 mt-14">Adv</p>
-                <p id="adv-yearly-amount" class="text-gray-500 plan border-2 hover:bg-amber-200"
-                    data-monthly-price="100" data-yearly-price="1200">$1200/yr</p>
-            </div>
-            <div id="pro-yearly">
-                <p id="proName" class="font-semibold text-gray-900 mt-14">Pro</p>
-                <p id="pro-yearly-amount" class="text-gray-500 plan border-2 hover:bg-amber-200"
-                    data-monthly-price="110" data-yearly-price="1300">$1300/yr</p>
-            </div>
-        </div>
-
-        <div class="flex items-center justify-center #FAFBFF p-4 rounded-lg mb-6">
+        <!-- Toggle for Monthly/Yearly -->
+        <div class="flex items-center justify-center p-4 rounded-lg mb-6">
             <span class="text-gray-500 text-sm mr-4">Monthly</span>
             <label class="relative inline-flex items-center cursor-pointer">
-                <input type="checkbox" id="billing-toggle" onchange="toggleBilling()" class="sr-only peer">
+                <input type="checkbox" id="billing-toggle" class="sr-only peer">
                 <div
                     class="w-12 h-7 bg-[#103c63] rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-1 after:left-1 after:bg-white after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#103c63]">
                 </div>
             </label>
             <span class="text-gray-900 text-sm ml-4 font-semibold">Yearly</span>
         </div>
-
-
-        <button id="nextStepBtn1">Next Step</button>
+        <button id="nextStepBtn1" disabled>Next Step 1</button>
     </div>
+
+
 
     <!-- Step 2: Add-ons -->
     <div id="toggle-BillingID" class="hidden">
-        <label for="online-service" class="text-blue-500 font-bold addon border-2 hover:bg-amber-200">
-            <input type="checkbox" id="online-service" data-price="2" /> Online service (+$2/mo)
-        </label>
+        <!-- Checkboxes for selecting add-ons -->
+        <div>
+            <label>
+                <input type="checkbox" id="small-storageId" data-price="2"> Small Storage (+$2)
+            </label>
+            <label>
+                <input type="checkbox" id="medium-storageId" data-price="4"> Medium Storage (+$4)
+            </label>
+            <label>
+                <input type="checkbox" id="large-storageId" data-price="6"> Large Storage (+$6)
+            </label>
+        </div>
 
-        <label for="larger-storage" class="text-blue-500 font-bold addon border-2 hover:bg-amber-200">
-            <input type="checkbox" id="larger-storage" data-price="4" /> Larger storage (+$4/mo)
-        </label>
-
-        <label for="customizable-profile" class="text-blue-500 font-bold addon border-2 hover:bg-amber-200">
-            <input type="checkbox" id="customizable-profile" data-price="6" /> Customizable profile (+$6/mo)
-        </label>
+        <!-- Display selected add-ons -->
+        <div id="selectedAddons"></div>
 
         <button id="nextStepBtn2" disabled>Next Step</button>
     </div>
-
-
 
     <!-- Step 4: Summary -->
     <div id="finishing-upId" class="hidden">
@@ -86,8 +127,8 @@
         <button id="confirmBtn">Confirm</button>
     </div>
 
-</body>
 
-<script src="test.js"></script>
+    <script src="test.js"></script>
+</body>
 
 </html>
