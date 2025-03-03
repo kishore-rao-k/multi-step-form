@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let selectedPlanPrice = 0;
   let selectedPlanName = "";
-  let billingPeriod = "yearly"; // Default billing period
 
   function updateStep() {
     steps.forEach((stepId) => {
@@ -17,30 +16,64 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById(steps[currentStep]).classList.remove("hidden");
   }
 
-  // Function to toggle between monthly and yearly plans
+  let billingPeriod = "monthly"; // Default billing period
+
+  // The plan data
+  const plansobj = [
+    {
+      billingPeriod: "monthly",
+      plans: [
+        { id: "arc-m", planName: "Arcade", planPrice: 100 },
+        { id: "adv-m", planName: "Advanced", planPrice: 150 },
+        { id: "pro-m", planName: "Pro", planPrice: 200 },
+      ],
+    },
+    {
+      billingPeriod: "yearly",
+      plans: [
+        { id: "arc-yearly", planName: "Arcade", planPrice: 1000 },
+        { id: "adv-yearly", planName: "Advanced", planPrice: 1500 },
+        { id: "pro-yearly", planName: "Pro", planPrice: 2000 },
+      ],
+    },
+  ];
+
+  // Function to update the billing period (monthly or yearly)
   function toggleBilling() {
-    const yearly = document.getElementById("yearly-plan");
-    const monthly = document.getElementById("monthly-plan");
+    const monthlyPlan = document.getElementById("monthly-plan");
+    const yearlyPlan = document.getElementById("yearly-plan");
 
     if (billingToggle.checked) {
-      billingPeriod = "monthly";
-      yearly.classList.add("hidden");
-      monthly.classList.remove("hidden");
-    } else {
       billingPeriod = "yearly";
-      yearly.classList.remove("hidden");
-      monthly.classList.add("hidden");
+      yearlyPlan.classList.remove("hidden");
+      monthlyPlan.classList.add("hidden");
+    } else {
+      billingPeriod = "monthly";
+      yearlyPlan.classList.add("hidden");
+      monthlyPlan.classList.remove("hidden");
     }
+    updateSelectedPlan(); // Update the selected plan price based on the new billing period
+  }
 
-    // Update the selected plan price based on the new billing period
+  // Function to update the selected plan price
+  function updateSelectedPlan() {
     const selectedRadio = document.querySelector(
       "input[type='radio'].plan-radio:checked"
     );
+
     if (selectedRadio) {
-      selectedPlanPrice =
-        billingPeriod === "monthly"
-          ? parseFloat(selectedRadio.dataset.monthlyPrice)
-          : parseFloat(selectedRadio.dataset.yearlyPrice);
+      const selectedPlanId = selectedRadio.id;
+      const selectedBillingPeriod = billingPeriod;
+
+      // Find the plan in the plansobj array based on the selected plan id
+      const selectedPlan = plansobj
+        .find((plan) => plan.billingPeriod === selectedBillingPeriod)
+        .plans.find((plan) => plan.id === selectedPlanId);
+
+      if (selectedPlan) {
+        selectedPlanPrice = selectedPlan.planPrice;
+        selectedPlanName = selectedPlan.planName;
+      }
     }
   }
 
@@ -55,14 +88,8 @@ document.addEventListener("DOMContentLoaded", function () {
       // Add 'selected' class to the clicked plan's name
       radio.parentElement.querySelector("p").classList.add("selected");
 
-      // Get the price from the selected plan based on billing type
-      selectedPlanPrice =
-        billingPeriod === "monthly"
-          ? parseFloat(radio.dataset.monthlyPrice)
-          : parseFloat(radio.dataset.yearlyPrice);
-
-      // Get the plan name based on the radio button selected
-      selectedPlanName = radio.dataset.name; // Arcade, Advanced, Pro
+      // Update the price from the selected plan based on billing type
+      updateSelectedPlan();
 
       // Enable the Next Step button after selecting a plan
       nextStepBtn1.disabled = false;
@@ -70,6 +97,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // Attach event listener to the billing toggle switch
+
   if (billingToggle) {
     billingToggle.addEventListener("change", toggleBilling);
     toggleBilling(); // Initialize toggle state on load
