@@ -93,6 +93,57 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+  // Form validation function with red border for invalid fields
+  function validateForm() {
+    let isValid = true;
+
+    // Personal Info Validation
+    const nameId = document.getElementById("nameId");
+    const emailId = document.getElementById("emailId");
+    const phoneId = document.getElementById("phoneId");
+    const nameError = document.getElementById("nameError");
+    const emailError = document.getElementById("emailError");
+    const phoneError = document.getElementById("phoneError");
+
+    // Validate Name
+    if (!nameId.value.trim()) {
+      nameError.textContent = "This field is required";
+      nameError.classList.remove("hidden");
+      nameId.classList.add("error-border"); // Add red border
+      isValid = false;
+    } else {
+      nameError.textContent = "";
+      nameError.classList.add("hidden");
+      nameId.classList.remove("error-border"); // Remove red border
+    }
+
+    // Validate Email
+    if (!emailId.value.trim()) {
+      emailError.textContent = "This field is required";
+      emailError.classList.remove("hidden");
+      emailId.classList.add("error-border"); // Add red border
+      isValid = false;
+    } else {
+      emailError.textContent = "";
+      emailError.classList.add("hidden");
+      emailId.classList.remove("error-border"); // Remove red border
+    }
+
+    // Validate Phone
+    if (!phoneId.value.trim()) {
+      phoneError.textContent = "This field is required";
+      phoneError.classList.remove("hidden");
+      phoneId.classList.add("error-border"); // Add red border
+      isValid = false;
+    } else {
+      phoneError.textContent = "";
+      phoneError.classList.add("hidden");
+      phoneId.classList.remove("error-border"); // Remove red border
+    }
+
+    return isValid;
+  }
+
   // Toggle between monthly and yearly plans
   function toggleBilling() {
     const monthlyPlan = document.getElementById("monthly-plan");
@@ -161,6 +212,9 @@ document.addEventListener("DOMContentLoaded", function () {
     nextStepBtn.addEventListener("click", () => {
       console.log("Next Step 0 Button clicked");
       if (currentStep === 0) {
+        if (!validateForm()) {
+          return; // Stop if validation fails
+        }
         currentStep = 1;
         updateStep();
       }
@@ -195,6 +249,7 @@ document.addEventListener("DOMContentLoaded", function () {
       updateStep(); // Move to Step 5
     });
   }
+
   // Go back button for step 1
   if (goBackBtn1) {
     goBackBtn1.addEventListener("click", () => {
@@ -216,18 +271,16 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }
-
   // Go back button for step 3
   if (goBackBtn3) {
     goBackBtn3.addEventListener("click", () => {
-      console.log("Go Back Button 2 clicked");
+      console.log("Go Back Button 3 clicked");
       if (currentStep === 3) {
         currentStep = 2; // Go back to Step 2
         updateStep();
       }
     });
   }
-
   function updateSelectedAddons() {
     const selectedAddonsArray = [];
     const selectedAddonCheckboxes = document.querySelectorAll(
@@ -265,6 +318,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Render the updated summary after addon selection
     renderSummary();
   }
+
   // Add event listeners for add-on checkboxes
   const addonCheckboxes = document.querySelectorAll(
     "input[type='checkbox'][data-price]"

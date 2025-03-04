@@ -9,10 +9,37 @@
 
 <body>
     <!-- Step 1: Welcome Selection -->
-    <div id="personal-infoId">
-        <img src="./assets/images/favicon-32x32.png" alt="abc">
-        <button id="nextStepBtn">Next Step</button>
+    <div id="personal-infoId" class="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">
+        <h2 class="text-2xl font-bold mb-2 text-gray-900">Personal Info</h2>
+        <p class="text-gray-600 mb-6">Please provide your name, email address, and phone number.</p>
+        <form>
+            <div class="mb-4">
+                <label id="nameLabel" class="block font-semibold mb-1 text-gray-700">Name</label>
+                <input id="nameId" type="text" placeholder="e.g.Stephen King"
+                    class="w-full border border-gray-300  rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 placeholder:font-bold placeholder:text-gray-400">
+                <span id="nameError" class="text-red-500 text-sm hidden"></span>
+            </div>
+
+            <div class="mb-4">
+                <label id="emailLabel" class="block font-semibold mb-1 text-gray-700">Email</label>
+                <input id="emailId" type="email" placeholder="e.g.stepenking@lorem.com"
+                    class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 placeholder:font-bold  placeholder:text-gray-400">
+                <span id="emailError" class="text-red-500 text-sm hidden"></span>
+            </div>
+
+            <div class="mb-4">
+                <label id="phoneLabel" class="block font-semibold mb-1 text-gray-700">Phone</label>
+                <input id="phoneId" type="number" placeholder="e.g.1234567890"
+                    class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 placeholder:font-bold  placeholder:text-gray-400">
+                <span id="phoneError" class="text-red-500 text-sm hidden"></span>
+            </div>
+        </form>
+        <button id="nextStepBtn"
+            class="w-full bg-blue-900 text-white font-medium py-2 rounded-lg mt-4 hover:bg-blue-700 transition duration-200">
+            Next Step
+        </button>
     </div>
+
 
     <!-- Step 2: Plan Selection -->
     <div id="form-pageID" class="hidden">
