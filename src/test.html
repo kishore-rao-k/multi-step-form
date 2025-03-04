@@ -8,6 +8,10 @@
 </head>
 
 <body>
+    <div id="personal-infoId">
+        <img src="./assets/images/favicon-32x32.png" alt="abc">
+        <button id="nextStepBtn" disabled>Next Step</button>
+    </div>
     <!-- Step 1: Plan Selection -->
     <div id="form-pageID">
         <!-- Monthly Plan -->
@@ -77,9 +81,10 @@
             </label>
             <span class="text-gray-900 text-sm ml-4 font-semibold">Yearly</span>
         </div>
-
-        <button id="nextStepBtn1" disabled>Next Step 1</button>
-
+        <div>
+            <button id="goBackBtn1">Go Back</button>
+            <button id="nextStepBtn1" disabled>Next Step 1</button>
+        </div>
     </div>
 
 
@@ -87,31 +92,49 @@
     <!-- Step 2: Add-ons -->
     <div id="toggle-BillingID" class="hidden">
         <!-- Checkboxes for selecting add-ons -->
-        <div>
+        <div id="addOn-card-monthly" class="space-y-4 hidden">
             <label>
-                <input type="checkbox" id="small-storageId" data-price="2"> Small Storage (+$2)
+                <input type="checkbox" id="small-storageId-monthly" data-price="2"> Small Storage (+$2)
             </label>
             <label>
-                <input type="checkbox" id="medium-storageId" data-price="4"> Medium Storage (+$4)
+                <input type="checkbox" id="medium-storageId-monthly" data-price="4"> Medium Storage (+$4)
             </label>
             <label>
-                <input type="checkbox" id="large-storageId" data-price="6"> Large Storage (+$6)
+                <input type="checkbox" id="large-storageId-monthly" data-price="6"> Large Storage (+$6)
+            </label>
+        </div>
+        <div id="addOn-card-yearly" class="space-y-4 hidden">
+            <label>
+                <input type="checkbox" id="small-storageId-yearly" data-price="2"> Small Storage (+$12)
+            </label>
+            <label>
+                <input type="checkbox" id="medium-storageId-yearly" data-price="4"> Medium Storage (+$14)
+            </label>
+            <label>
+                <input type="checkbox" id="large-storageId-yearly" data-price="6"> Large Storage (+$16)
             </label>
         </div>
 
         <!-- Display selected add-ons -->
-        <div id="selectedAddons"></div>
-
-        <button id="nextStepBtn2" disabled>Next Step</button>
+        <!-- <div id="selectedAddons"></div> -->
+        <div>
+            <button id="nextStepBtn2" disabled>Next Step 2</button>
+            <button id="goBackBtn2">Go Back</button>
+        </div>
     </div>
 
     <!-- Step 4: Summary -->
     <div id="finishing-upId" class="hidden">
         <div id="totalPriceDisplay"></div>
-        <button id="confirmBtn">Confirm</button>
+        <div>
+            <button id="confirmBtn">Confirm</button>
+            <button id="goBackBtn3">Go Back</button>
+        </div>
     </div>
 
-
+    <div id="thankyou-Id">
+        <img src="./assets/images/icon-thank-you.svg" alt="icon-thank-you">
+    </div>
     <script src="test.js"></script>
 </body>
 

@@ -8,24 +8,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let selectedPlanPrice = 0;
   let selectedPlanName = "";
+  let selectedAddons = [];
+  let additionalCost = 0;
 
-  function updateStep() {
-    steps.forEach((stepId) => {
-      document.getElementById(stepId).classList.add("hidden");
-    });
-    document.getElementById(steps[currentStep]).classList.remove("hidden");
-  }
+  let addonsobj = {
+    monthly: [
+      { id: "small-storageId-monthly", name: "Small Storage", price: 2 },
+      { id: "medium-storageId-monthly", name: "Medium Storage", price: 4 },
+      { id: "large-storageId-monthly", name: "Large Storage", price: 6 },
+    ],
+    yearly: [
+      { id: "small-storageId-yearly", name: "Small Storage", price: 10 },
+      { id: "medium-storageId-yearly", name: "Medium Storage", price: 14 },
+      { id: "large-storageId-yearly", name: "Large Storage", price: 16 },
+    ],
+  };
 
   let billingPeriod = "monthly"; // Default billing period
 
-  // The plan data
   const plansobj = [
     {
       billingPeriod: "monthly",
       plans: [
-        { id: "arc-m", planName: "Arcade", planPrice: 100 },
-        { id: "adv-m", planName: "Advanced", planPrice: 150 },
-        { id: "pro-m", planName: "Pro", planPrice: 200 },
+        { id: "arc-m", planName: "Arcade", planPrice: 9 },
+        { id: "adv-m", planName: "Advanced", planPrice: 12 },
+        { id: "pro-m", planName: "Pro", planPrice: 15 },
       ],
     },
     {
@@ -38,24 +45,45 @@ document.addEventListener("DOMContentLoaded", function () {
     },
   ];
 
-  // Function to update the billing period (monthly or yearly)
+  function updateStep() {
+    steps.forEach((stepId) => {
+      document.getElementById(stepId).classList.add("hidden");
+    });
+    document.getElementById(steps[currentStep]).classList.remove("hidden");
+
+    // Always enable nextStepBtn2 when reaching step 2
+    if (currentStep === 1) {
+      nextStepBtn2.disabled = false;
+    }
+  }
+
   function toggleBilling() {
     const monthlyPlan = document.getElementById("monthly-plan");
     const yearlyPlan = document.getElementById("yearly-plan");
+    const addOnCardMonthly = document.getElementById("addOn-card-monthly");
+    const addOnCardYearly = document.getElementById("addOn-card-yearly");
 
     if (billingToggle.checked) {
       billingPeriod = "yearly";
       yearlyPlan.classList.remove("hidden");
       monthlyPlan.classList.add("hidden");
+      addOnCardYearly.classList.remove("hidden");
+      addOnCardMonthly.classList.add("hidden");
     } else {
       billingPeriod = "monthly";
       yearlyPlan.classList.add("hidden");
       monthlyPlan.classList.remove("hidden");
+      addOnCardYearly.classList.add("hidden");
+      addOnCardMonthly.classList.remove("hidden");
     }
-    updateSelectedPlan(); // Update the selected plan price based on the new billing period
+    updateSelectedPlan();
   }
 
-  // Function to update the selected plan price
+  if (billingToggle) {
+    billingToggle.addEventListener("change", toggleBilling);
+    toggleBilling();
+  }
+
   function updateSelectedPlan() {
     const selectedRadio = document.querySelector(
       "input[type='radio'].plan-radio:checked"
@@ -65,7 +93,6 @@ document.addEventListener("DOMContentLoaded", function () {
       const selectedPlanId = selectedRadio.id;
       const selectedBillingPeriod = billingPeriod;
 
-      // Find the plan in the plansobj array based on the selected plan id
       const selectedPlan = plansobj
         .find((plan) => plan.billingPeriod === selectedBillingPeriod)
         .plans.find((plan) => plan.id === selectedPlanId);
@@ -73,164 +100,104 @@ document.addEventListener("DOMContentLoaded", function () {
       if (selectedPlan) {
         selectedPlanPrice = selectedPlan.planPrice;
         selectedPlanName = selectedPlan.planName;
+        nextStepBtn1.disabled = false; // Enable nextStepBtn1 once a plan is selected
       }
     }
   }
 
-  // Step 1: User selects the plan using radio buttons
   const plans = document.querySelectorAll("input[type='radio'].plan-radio");
   plans.forEach((radio) => {
     radio.addEventListener("change", () => {
-      // Remove 'selected' class from all plans
       plans.forEach((r) =>
         r.parentElement.querySelector("p").classList.remove("selected")
       );
-      // Add 'selected' class to the clicked plan's name
       radio.parentElement.querySelector("p").classList.add("selected");
 
-      // Update the price from the selected plan based on billing type
       updateSelectedPlan();
-
-      // Enable the Next Step button after selecting a plan
-      nextStepBtn1.disabled = false;
     });
   });
 
-  // Attach event listener to the billing toggle switch
-
-  if (billingToggle) {
-    billingToggle.addEventListener("change", toggleBilling);
-    toggleBilling(); // Initialize toggle state on load
-  }
-
-  // Add event listener for nextStepBtn1 (Step 1 -> Step 2)
-  if (nextStepBtn1) {
-    nextStepBtn1.addEventListener("click", () => {
-      if (currentStep === 0) {
-        currentStep = 1; // Transition to Step 2
-        updateStep();
-      }
-    });
-  }
-
-  // Step 2: User selects add-ons (checkboxes for multiple selection)
-  const addons = [
-    { id: "small-storageId", addOnName: "Small Storage", price: 2 },
-    { id: "medium-storageId", addOnName: "Medium Storage", price: 4 },
-    { id: "large-storageId", addOnName: "Large Storage", price: 6 },
-  ];
-
-  let additionalCost = 0;
-  let selectedAddons = [];
-
-  // Function to handle checkbox change events
   function handleCheckboxChange(event) {
-    const checkboxId = event.target.id; // Get the id of the clicked checkbox
-    const checkboxChecked = event.target.checked; // Whether the checkbox is checked
+    const checkboxId = event.target.id;
+    const checkboxChecked = event.target.checked;
 
-    // Find the corresponding addon from the addons array using the checkbox id
-    const addon = addons.find((a) => a.id === checkboxId);
+    const addon = addonsobj[billingPeriod].find((a) => a.id === checkboxId);
 
     if (addon) {
       if (checkboxChecked) {
-        // If the checkbox is checked, add the add-on to the selectedAddons list and update the cost
         additionalCost += addon.price;
-        selectedAddons.push({ name: addon.addOnName, price: addon.price });
+        selectedAddons.push({ name: addon.name, price: addon.price });
       } else {
-        // If the checkbox is unchecked, remove the add-on from the selectedAddons list and update the cost
         additionalCost -= addon.price;
         selectedAddons = selectedAddons.filter(
-          (selectedAddon) => selectedAddon.name !== addon.addOnName
+          (selectedAddon) => selectedAddon.name !== addon.name
         );
       }
     }
 
-    // Enable the next step button if any add-on is selected
-    nextStepBtn2.disabled = selectedAddons.length === 0;
-
-    // Display selected add-ons
     updateAddonsDisplay();
-    console.log(`Total Additional Cost: $${additionalCost}/mo`);
   }
 
-  // Function to update the display of selected add-ons
   function updateAddonsDisplay() {
-    document.getElementById("selectedAddons").innerHTML = selectedAddons
-      .map((addon) => `<p>${addon.name} $${addon.price}/mo</p>`)
+    const selectedAddonsDisplay = document.getElementById("selectedAddons");
+    selectedAddonsDisplay.innerHTML = selectedAddons
+      .map((addon) => `<p>${addon.name} (+$${addon.price})</p>`)
       .join("");
   }
 
-  // Add event listeners to each checkbox
-  addons.forEach((addon) => {
+  addonsobj.monthly.forEach((addon) => {
     const element = document.getElementById(addon.id);
     if (element) {
       element.addEventListener("change", handleCheckboxChange);
     }
   });
 
-  // Button for Next Step (Step 2 -> Step 4)
-  nextStepBtn2.addEventListener("click", () => {
-    if (currentStep === 1) {
-      currentStep = 2; // Transition to Step 4
-      updateStep();
-
-      // Update the summary with selected add-ons when moving to Step 4
-      renderSummary();
+  addonsobj.yearly.forEach((addon) => {
+    const element = document.getElementById(addon.id);
+    if (element) {
+      element.addEventListener("change", handleCheckboxChange);
     }
   });
 
-  // Function to update the current step visibility
-  function updateStep() {
-    steps.forEach((stepId) => {
-      document.getElementById(stepId).classList.add("hidden");
+  if (nextStepBtn1) {
+    nextStepBtn1.addEventListener("click", () => {
+      if (currentStep === 0) {
+        currentStep = 1;
+        updateStep();
+      }
     });
-    document.getElementById(steps[currentStep]).classList.remove("hidden");
   }
 
-  // Render the summary for Step 4
+  if (nextStepBtn2) {
+    nextStepBtn2.addEventListener("click", () => {
+      if (currentStep === 1) {
+        currentStep = 2;
+        updateStep();
+        renderSummary();
+      }
+    });
+  }
+
   function renderSummary() {
-    const totalPrice = selectedPlanPrice + additionalCost; // Total price includes plan + add-ons
+    const totalPrice = selectedPlanPrice + additionalCost;
     const totalPriceElement = document.getElementById("totalPriceDisplay");
 
-    // Display selected plan, add-ons, and total price in the summary
     totalPriceElement.innerHTML = `
-          <p>You selected the <strong>"${selectedPlanName}"</strong> plan (${
+      <p><strong>${selectedPlanName} (${
       billingPeriod === "monthly" ? "Monthly" : "Yearly"
-    } billing).</p>
-        <p>Plan price: $${selectedPlanPrice}/${
+    } )</strong></p>
+      <p>Plan price: $${selectedPlanPrice}/${
       billingPeriod === "monthly" ? "mo" : "yr"
     }</p>
-        <p>Selected Add-ons:</p>
-        <div id="selectedAddonsSummary">${selectedAddons
-          .map((addon) => `<p>${addon.name} $${addon.price}/mo</p>`)
-          .join("")}</div>
-        <p>Total additional cost: $${additionalCost}/${
+      <div id="selectedAddonsSummary">${selectedAddons
+        .map((addon) => `<p>${addon.name} (+$${addon.price})</p>`)
+        .join("")}</div>
+      
+      <p>Total price: $${totalPrice}/${
       billingPeriod === "monthly" ? "mo" : "yr"
     }</p>
-        <p>Total price: $${totalPrice}/${
-      billingPeriod === "monthly" ? "mo" : "yr"
-    }</p>
-        `;
+    `;
   }
 
-  // Confirm Button Logic (Step 4)
-  confirmBtn.addEventListener("click", () => {
-    const totalPrice = selectedPlanPrice + additionalCost;
-    alert(`Form submitted! Total price: $${totalPrice}`);
-  });
-
-  // Initialize the first step
-  updateStep();
-
-  // Render summary when transitioning to Step 4
-  nextStepBtn2.addEventListener("click", () => {
-    if (currentStep === 2) {
-      renderSummary(); // Update the summary with selected plan and total
-    }
-  });
-
-  // Initialize toggle behavior on page load
-  const toggle = document.getElementById("billing-toggle");
-  toggle.addEventListener("change", toggleBilling); // Attach toggleBilling event
-  toggleBilling(); // Initialize billing state based on the checkbox status
+  updateStep(); // Initialize the first step
 });
