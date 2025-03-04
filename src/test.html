@@ -8,39 +8,35 @@
 </head>
 
 <body>
+    <!-- Step 1: Welcome Selection -->
     <div id="personal-infoId">
         <img src="./assets/images/favicon-32x32.png" alt="abc">
-        <button id="nextStepBtn" disabled>Next Step</button>
+        <button id="nextStepBtn">Next Step</button>
     </div>
-    <!-- Step 1: Plan Selection -->
-    <div id="form-pageID">
+
+    <!-- Step 2: Plan Selection -->
+    <div id="form-pageID" class="hidden">
         <!-- Monthly Plan -->
         <div id="monthly-plan">
             <div>
                 <input type="radio" id="arc-m" name="plan" value="arcade" class="plan-radio">
                 <label for="arc-m">
                     <p class="font-semibold text-gray-900 mt-14">Arcade</p>
-                    <p class="text-gray-500 plan border-2 hover:bg-amber-200">
-                        $9/mo
-                    </p>
+                    <p class="text-gray-500 plan border-2 hover:bg-amber-200">$9/mo</p>
                 </label>
             </div>
             <div>
                 <input type="radio" id="adv-m" name="plan" value="advanced" class="plan-radio">
                 <label for="adv-m">
                     <p class="font-semibold text-gray-900 mt-14">Adv</p>
-                    <p class="text-gray-500 plan border-2 hover:bg-amber-200">
-                        $12/mo
-                    </p>
+                    <p class="text-gray-500 plan border-2 hover:bg-amber-200">$12/mo</p>
                 </label>
             </div>
             <div>
                 <input type="radio" id="pro-m" name="plan" value="pro" class="plan-radio">
                 <label for="pro-m">
                     <p class="font-semibold text-gray-900 mt-14">Pro</p>
-                    <p class="text-gray-500 plan border-2 hover:bg-amber-200">
-                        $15/mo
-                    </p>
+                    <p class="text-gray-500 plan border-2 hover:bg-amber-200">$15/mo</p>
                 </label>
             </div>
         </div>
@@ -81,17 +77,15 @@
             </label>
             <span class="text-gray-900 text-sm ml-4 font-semibold">Yearly</span>
         </div>
+
         <div>
             <button id="goBackBtn1">Go Back</button>
             <button id="nextStepBtn1" disabled>Next Step 1</button>
         </div>
     </div>
 
-
-
-    <!-- Step 2: Add-ons -->
+    <!-- Step 3: Add-ons -->
     <div id="toggle-BillingID" class="hidden">
-        <!-- Checkboxes for selecting add-ons -->
         <div id="addOn-card-monthly" class="space-y-4 hidden">
             <label>
                 <input type="checkbox" id="small-storageId-monthly" data-price="2"> Small Storage (+$2)
@@ -105,21 +99,22 @@
         </div>
         <div id="addOn-card-yearly" class="space-y-4 hidden">
             <label>
-                <input type="checkbox" id="small-storageId-yearly" data-price="2"> Small Storage (+$12)
+                <input type="checkbox" id="small-storageId-yearly" data-price="12"> Small Storage (+$12)
             </label>
             <label>
-                <input type="checkbox" id="medium-storageId-yearly" data-price="4"> Medium Storage (+$14)
+                <input type="checkbox" id="medium-storageId-yearly" data-price="14"> Medium Storage (+$14)
             </label>
             <label>
-                <input type="checkbox" id="large-storageId-yearly" data-price="6"> Large Storage (+$16)
+                <input type="checkbox" id="large-storageId-yearly" data-price="16"> Large Storage (+$16)
             </label>
         </div>
 
-        <!-- Display selected add-ons -->
-        <!-- <div id="selectedAddons"></div> -->
+        <!-- Container for dynamically rendering add-ons -->
+        <!-- <div id="addonContainer" class="space-y-4"></div> This is the new container -->
+
         <div>
-            <button id="nextStepBtn2" disabled>Next Step 2</button>
             <button id="goBackBtn2">Go Back</button>
+            <button id="nextStepBtn2" disabled>Next Step 2</button>
         </div>
     </div>
 
@@ -132,9 +127,11 @@
         </div>
     </div>
 
-    <div id="thankyou-Id">
+    <!-- Step 5: Thank You -->
+    <div id="thankyou-Id" class="hidden">
         <img src="./assets/images/icon-thank-you.svg" alt="icon-thank-you">
     </div>
+
     <script src="test.js"></script>
 </body>
 
