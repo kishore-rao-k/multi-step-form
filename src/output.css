@@ -12,6 +12,8 @@
     --color-red-500: oklch(0.637 0.237 25.331);
     --color-orange-200: oklch(0.901 0.076 70.697);
     --color-amber-200: oklch(0.924 0.12 95.746);
+    --color-blue-50: oklch(0.97 0.014 254.604);
+    --color-blue-100: oklch(0.932 0.032 255.585);
     --color-blue-200: oklch(0.882 0.059 254.128);
     --color-blue-500: oklch(0.623 0.214 259.815);
     --color-blue-600: oklch(0.546 0.245 262.881);
@@ -1291,6 +1293,12 @@
   .bg-\[var\(--my_variable\)\] {
     background-color: var(--my_variable);
   }
+  .bg-blue-50 {
+    background-color: var(--color-blue-50);
+  }
+  .bg-blue-100 {
+    background-color: var(--color-blue-100);
+  }
   .bg-blue-200 {
     background-color: var(--color-blue-200);
   }
@@ -2205,9 +2213,19 @@
   .transform-view {
     transform-box: view-box;
   }
+  .peer-checked\:border-blue-500 {
+    &:is(:where(.peer):checked ~ *) {
+      border-color: var(--color-blue-500);
+    }
+  }
   .peer-checked\:bg-\[\#103c63\] {
     &:is(:where(.peer):checked ~ *) {
       background-color: #103c63;
+    }
+  }
+  .peer-checked\:bg-blue-100 {
+    &:is(:where(.peer):checked ~ *) {
+      background-color: var(--color-blue-100);
     }
   }
   .peer-checked\:bg-blue-600 {

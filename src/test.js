@@ -16,10 +16,27 @@ document.addEventListener("DOMContentLoaded", function () {
   const goBackBtn3 = document.getElementById("goBackBtn3");
   const confirmBtn = document.getElementById("confirmBtn");
 
+  let leftContainerSteps = document.querySelectorAll(".steps");
+  changeStatusofSteps();
+  function changeStatusofSteps() {
+    for (let i = 0; i < 4; i++) {
+      let step = leftContainerSteps[i];
+      if (currentStep == i) {
+        step.style.backgroundColor = "#BFE2FD";
+        step.style.color = "black";
+        step.style.border = "1px solid transparent";
+      } else {
+        step.style.backgroundColor = "transparent";
+        step.style.color = "white";
+        step.style.border = "1px solid white";
+      }
+    }
+  }
+
   const billingToggle = document.getElementById("billing-toggle");
 
-  let selectedPlanPrice = 0;
-  let selectedPlanName = "";
+  let selectedPlanPrice = 9;
+  let selectedPlanName = "Arcade";
   let selectedAddons = [];
   let additionalCost = 0;
 
@@ -184,10 +201,32 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
+  function setupCheckboxHighlight() {
+    // Select all checkboxes within the #toggle-BillingID container
+    const checkboxes = document.querySelectorAll(
+      '#toggle-BillingID input[type="checkbox"]'
+    );
+
+    checkboxes.forEach((checkbox) => {
+      // Find the parent label of the checkbox
+      const label = checkbox.closest("label");
+
+      // Add event listener to the checkbox
+      checkbox.addEventListener("change", () => {
+        if (checkbox.checked) {
+          label.classList.add("bg-blue-50", "border-blue-500"); // Add highlight styles
+        } else {
+          label.classList.remove("bg-blue-50", "border-blue-500"); // Remove highlight styles
+        }
+      });
+    });
+  }
+
   function updateAddons() {
     selectedAddons = [];
     additionalCost = 0;
-
+    // Call the function to set up the highlight functionality
+    setupCheckboxHighlight();
     const addons = document.querySelectorAll("input[type='checkbox']:checked");
     addons.forEach((addon) => {
       const addonId = addon.id;
@@ -213,6 +252,7 @@ document.addEventListener("DOMContentLoaded", function () {
           return;
         }
         currentStep = 1;
+        changeStatusofSteps();
         updateStep();
       }
     });
@@ -222,6 +262,7 @@ document.addEventListener("DOMContentLoaded", function () {
     nextStepBtn1.addEventListener("click", () => {
       if (currentStep === 1) {
         currentStep = 2;
+        changeStatusofSteps();
         updateStep();
       }
     });
@@ -231,6 +272,7 @@ document.addEventListener("DOMContentLoaded", function () {
     nextStepBtn2.addEventListener("click", () => {
       if (currentStep === 2) {
         currentStep = 3;
+        changeStatusofSteps();
         updateStep();
         renderSummary();
       }
@@ -241,6 +283,7 @@ document.addEventListener("DOMContentLoaded", function () {
     goBackBtn1.addEventListener("click", () => {
       if (currentStep === 1) {
         currentStep = 0;
+        changeStatusofSteps();
         updateStep();
       }
     });
@@ -250,6 +293,7 @@ document.addEventListener("DOMContentLoaded", function () {
     goBackBtn2.addEventListener("click", () => {
       if (currentStep === 2) {
         currentStep = 1;
+        changeStatusofSteps();
         updateStep();
       }
     });
@@ -259,6 +303,7 @@ document.addEventListener("DOMContentLoaded", function () {
     goBackBtn3.addEventListener("click", () => {
       if (currentStep === 3) {
         currentStep = 2;
+        changeStatusofSteps();
         updateStep();
       }
     });
@@ -272,46 +317,63 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function renderSummary() {
+    const selectedPlanNameElement = document.getElementById("selectedPlanName");
+    const selectedPlanPriceElement =
+      document.getElementById("selectedPlanPrice");
+    const selectedAddonsSummary = document.getElementById(
+      "selectedAddonsSummary"
+    );
+    const billingPeriodText = document.getElementById("billingPeriodText");
+    const totalPriceElement = document.getElementById("totalPrice");
+
     const totalPrice = selectedPlanPrice + additionalCost;
-    const totalPriceElement = document.getElementById("totalPriceDisplay");
 
-    totalPriceElement.innerHTML = `
-        <div class="bg-gray-100 p-4 rounded-lg shadow-sm">
-            <div class="flex justify-between items-center font-semibold text-gray-900">
-                <span>${selectedPlanName} (${
+    selectedPlanNameElement.textContent = `${selectedPlanName} (${
       billingPeriod === "monthly" ? "Monthly" : "Yearly"
-    })</span>
-                <span class="text-gray-900">$${selectedPlanPrice}/${
+    })`;
+    selectedPlanPriceElement.textContent = `$${selectedPlanPrice}/${
       billingPeriod === "monthly" ? "mo" : "yr"
-    }</span>
-            </div>
-            <a href="#" class="text-blue-600 text-sm underline">Change</a>
-            <hr class="my-2 border-gray-300">
-            <div id="selectedAddonsSummary" class="text-gray-500">
-                ${selectedAddons
-                  .map((addon) => {
-                    return `
-                        <div class="flex justify-between items-center">
-                            <span>${addon.name}</span>
-                            <span class="text-gray-900">+$${addon.price}/${
-                      billingPeriod === "monthly" ? "mo" : "yr"
-                    }</span>
-                        </div>
-                    `;
-                  })
-                  .join("")}
-            </div>
-        </div>
+    }`;
 
-        <div class="flex justify-between mt-4 font-semibold text-gray-500">
-            <span>Total (per ${
-              billingPeriod === "monthly" ? "month" : "year"
-            })</span>
-            <span class="text-indigo-600 text-lg font-bold">$${totalPrice}/${
+    billingPeriodText.textContent =
+      billingPeriod === "monthly" ? "month" : "year";
+
+    totalPriceElement.textContent = `$${totalPrice}/${
       billingPeriod === "monthly" ? "mo" : "yr"
-    }</span>
-        </div>
-    `;
+    }`;
+
+    selectedAddonsSummary.innerHTML = "";
+    selectedAddons.forEach((addon) => {
+      const addonItem = document.createElement("div");
+      addonItem.classList.add("flex", "justify-between", "items-center");
+      addonItem.innerHTML = `
+            <span>${addon.name}</span>
+            <span class="text-gray-900">+$${addon.price}/${
+        billingPeriod === "monthly" ? "mo" : "yr"
+      }</span>
+        `;
+      selectedAddonsSummary.appendChild(addonItem);
+    });
+  }
+
+  const changeLink = document.getElementById("changeLink");
+  const formPageIDSection = document.getElementById("form-pageID");
+  const summerySection = document.getElementById("finishing-upId");
+
+  if (changeLink && formPageIDSection) {
+    changeLink.addEventListener("click", function (event) {
+      event.preventDefault();
+
+      if (formPageIDSection.classList.contains("hidden")) {
+        formPageIDSection.classList.remove("hidden");
+        summerySection.classList.add("hidden");
+        currentStep = 1;
+        changeStatusofSteps();
+        updateStep();
+      } else {
+        formPageIDSection.classList.add("hidden");
+      }
+    });
   }
 
   updateStep(); // Initialize the first step

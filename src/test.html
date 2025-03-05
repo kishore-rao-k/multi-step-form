@@ -15,8 +15,7 @@
             class="flex flex-col justify-start gap-5 w-[45%] h-[35.5rem] bg-contain bg-center bg-no-repeat bg-[url('./assets/images/bg-sidebar-desktop.svg')] p-10">
 
             <div class="flex items-center">
-                <div id="step-1"
-                    class="w-12 h-12 flex items-center justify-center rounded-full border-2 text-white font-bold bg-blue-500">
+                <div id="step-1" class="steps w-12 h-12 flex items-center justify-center rounded-full  font-bold">
                     1
                 </div>
                 <div class="ml-3">
@@ -27,8 +26,7 @@
 
 
             <div class="flex items-center">
-                <div id="step-2"
-                    class="w-12 h-12 flex items-center justify-center rounded-full border-2 text-white font-bold bg-blue-500">
+                <div id="step-2" class="steps w-12 h-12 flex items-center justify-center rounded-full  font-bold">
                     2
                 </div>
                 <div class="ml-3">
@@ -39,8 +37,7 @@
 
 
             <div class="flex items-center">
-                <div id="step-3"
-                    class="w-12 h-12 flex items-center justify-center rounded-full border-2 text-white font-bold bg-blue-500">
+                <div id="step-3" class="steps w-12 h-12 flex items-center justify-center rounded-full  font-bold">
                     3
                 </div>
                 <div class="ml-3">
@@ -51,8 +48,7 @@
 
 
             <div class="flex items-center">
-                <div id="step-4"
-                    class="w-12 h-12 flex items-center justify-center rounded-full border-2 text-white font-bold bg-blue-500">
+                <div id="step-4" class="steps w-12 h-12 flex items-center justify-center rounded-full  font-bold">
                     4
                 </div>
                 <div class="ml-3">
@@ -181,7 +177,7 @@
 
                 <div id="addOn-card-monthly" class="space-y-4 hidden">
                     <label
-                        class="flex items-center justify-between p-4 border border-gray-300 rounded-lg cursor-pointer hover:border-blue-500">
+                        class="flex items-center justify-between p-4 border border-gray-300 rounded-lg cursor-pointer hover:border-blue-500 transition-colors duration-200">
                         <div class="flex items-center gap-3">
                             <input type="checkbox" id="small-storageId-monthly" data-price="2" class="w-5 h-5">
                             <div>
@@ -254,8 +250,6 @@
                         <span class="text-blue-600 font-semibold">+$20/yr</span>
                     </label>
                 </div>
-
-
             </div>
 
 
@@ -264,7 +258,25 @@
                 <h2 class="text-2xl font-bold text-gray-900">Finishing up</h2>
                 <p class="text-gray-500 mb-4">Double-check everything looks OK before confirming.</p>
 
-                <div id="totalPriceDisplay"></div>
+
+                <div id="totalPriceDisplay" class="bg-gray-100 p-4 rounded-lg shadow-sm">
+                    <div class="flex justify-between items-center font-semibold text-gray-900">
+                        <span id="selectedPlanName"></span>
+                        <span id="selectedPlanPrice" class="text-gray-900"></span>
+                    </div>
+
+                    <a href="#" id="changeLink" class="text-blue-600 text-sm underline">Change</a>
+                    <hr class="my-2 border-gray-300">
+
+
+                    <div id="selectedAddonsSummary" class="text-gray-500"></div>
+                </div>
+
+
+                <div class="flex justify-between mt-4 font-semibold text-gray-500">
+                    <span>Total (per <span id="billingPeriodText"></span>)</span>
+                    <span id="totalPrice" class="text-indigo-600 text-lg font-bold"></span>
+                </div>
 
 
             </div>
