@@ -202,21 +202,21 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   function setupCheckboxHighlight() {
-    // Select all checkboxes within the #toggle-BillingID container
+  
     const checkboxes = document.querySelectorAll(
       '#toggle-BillingID input[type="checkbox"]'
     );
 
     checkboxes.forEach((checkbox) => {
-      // Find the parent label of the checkbox
+      
       const label = checkbox.closest("label");
 
-      // Add event listener to the checkbox
+    
       checkbox.addEventListener("change", () => {
         if (checkbox.checked) {
-          label.classList.add("bg-blue-50", "border-blue-500"); // Add highlight styles
+          label.classList.add("bg-blue-50", "border-blue-500"); 
         } else {
-          label.classList.remove("bg-blue-50", "border-blue-500"); // Remove highlight styles
+          label.classList.remove("bg-blue-50", "border-blue-500"); 
         }
       });
     });
@@ -225,7 +225,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function updateAddons() {
     selectedAddons = [];
     additionalCost = 0;
-    // Call the function to set up the highlight functionality
+   
     setupCheckboxHighlight();
     const addons = document.querySelectorAll("input[type='checkbox']:checked");
     addons.forEach((addon) => {
@@ -237,7 +237,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
 
-    nextStepBtn2.disabled = selectedAddons.length === 0;
+    
   }
 
   const addons = document.querySelectorAll("input[type='checkbox']");
@@ -376,5 +376,5 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  updateStep(); // Initialize the first step
+  updateStep(); 
 });

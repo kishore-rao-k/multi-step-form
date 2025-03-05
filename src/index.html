@@ -91,72 +91,90 @@
 
 
             <div id="form-pageID" class="hidden ">
-                <!-- Title -->
+
                 <h2 class="text-2xl font-bold text-[#103c63]">Select your plan</h2>
                 <p class="text-gray-500 text-sm mb-6">You have the option of monthly or yearly billing.</p>
 
-                <!-- Monthly Plan -->
+
                 <div id="monthly-plan">
                     <div class="flex justify-between gap-5 mb-6">
-                        <label for="arc-m"
-                            class="border-2 border-gray-300 p-6 rounded-lg w-full text-left cursor-pointer hover:border-blue-600 transition-all flex flex-col items-start">
+
+                        <div class="flex-1 basis-1">
                             <input type="radio" id="arc-m" name="plan" value="arcade" class="hidden peer">
-                            <img src="./assets/images/icon-arcade.svg" class="w-12 h-12 mb-4" alt="Arcade Icon">
-                            <p class="font-semibold text-gray-900">Arcade</p>
-                            <p class="text-gray-500">$9/mo</p>
-                        </label>
+                            <label for="arc-m"
+                                class="border-2 border-gray-300 p-6 rounded-lg w-full text-left cursor-pointer hover:border-blue-600 transition-all flex flex-col items-start peer-checked:border-blue-600 peer-checked:bg-blue-50">
+                                <img src="./assets/images/icon-arcade.svg" class="w-12 h-12 mb-4" alt="Arcade Icon">
+                                <p class="font-semibold text-gray-900">Arcade</p>
+                                <p class="text-gray-500">$9/mo</p>
+                            </label>
+                        </div>
 
-                        <label for="adv-m"
-                            class="border-2 border-gray-300 p-6 rounded-lg w-full text-left cursor-pointer hover:border-blue-600 transition-all flex flex-col items-start">
+
+                        <div class="flex-1 basis-1">
                             <input type="radio" id="adv-m" name="plan" value="advanced" class="hidden peer">
-                            <img src="./assets/images/icon-advanced.svg" class="w-12 h-12 mb-4" alt="Advanced Icon">
-                            <p class="font-semibold text-gray-900">Advanced</p>
-                            <p class="text-gray-500">$12/mo</p>
-                        </label>
+                            <label for="adv-m"
+                                class="border-2 border-gray-300 p-6 rounded-lg w-full text-left cursor-pointer hover:border-blue-600 transition-all flex flex-col items-start peer-checked:border-blue-600 peer-checked:bg-blue-50">
+                                <img src="./assets/images/icon-advanced.svg" class="w-12 h-12 mb-4" alt="Advanced Icon">
+                                <p class="font-semibold text-gray-900">Advanced</p>
+                                <p class="text-gray-500">$12/mo</p>
+                            </label>
+                        </div>
 
-                        <label for="pro-m"
-                            class="border-2 border-gray-300 p-6 rounded-lg w-full text-left cursor-pointer hover:border-blue-600 transition-all flex flex-col items-start">
+
+                        <div class="flex-1 basis-1">
                             <input type="radio" id="pro-m" name="plan" value="pro" class="hidden peer">
-                            <img src="./assets/images/icon-pro.svg" class="w-12 h-12 mb-4" alt="Pro Icon">
-                            <p class="font-semibold text-gray-900">Pro</p>
-                            <p class="text-gray-500">$15/mo</p>
-                        </label>
+                            <label for="pro-m"
+                                class="border-2 border-gray-300 p-6 rounded-lg w-full text-left cursor-pointer hover:border-blue-600 transition-all flex flex-col items-start peer-checked:border-blue-600 peer-checked:bg-blue-50">
+                                <img src="./assets/images/icon-pro.svg" class="w-12 h-12 mb-4" alt="Pro Icon">
+                                <p class="font-semibold text-gray-900">Pro</p>
+                                <p class="text-gray-500">$15/mo</p>
+                            </label>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Yearly Plan -->
+
                 <div id="yearly-plan" class="hidden">
                     <div class="flex justify-between gap-5 mb-6">
-                        <label for="arc-yearly"
-                            class="border-2 border-gray-300 p-6 rounded-lg w-full text-left cursor-pointer hover:border-blue-600 transition-all flex flex-col items-start">
+
+                        <div class="flex-1 basis-1">
                             <input type="radio" id="arc-yearly" name="plan" value="arcade" class="hidden peer">
-                            <img src="./assets/images/icon-arcade.svg" class="w-12 h-12 mb-4" alt="Arcade Icon">
-                            <p class="font-semibold text-gray-900">Arcade</p>
-                            <p class="text-gray-500">$90/yr</p>
-                            <p class="text-blue-500 text-xs">2 months free</p>
-                        </label>
+                            <label for="arc-yearly"
+                                class="border-2 border-gray-300 p-6 rounded-lg w-full text-left cursor-pointer hover:border-blue-600 transition-all flex flex-col items-start peer-checked:border-blue-600 peer-checked:bg-blue-50">
+                                <img src="./assets/images/icon-arcade.svg" class="w-12 h-12 mb-4" alt="Arcade Icon">
+                                <p class="font-semibold text-gray-900">Arcade</p>
+                                <p class="text-gray-500">$90/yr</p>
+                                <p class="text-blue-500 text-xs">2 months free</p>
+                            </label>
+                        </div>
 
-                        <label for="adv-yearly"
-                            class="border-2 border-gray-300 p-6 rounded-lg w-full text-left cursor-pointer hover:border-blue-600 transition-all flex flex-col items-start">
+
+                        <div class="flex-1 basis-1">
                             <input type="radio" id="adv-yearly" name="plan" value="advanced" class="hidden peer">
-                            <img src="./assets/images/icon-advanced.svg" class="w-12 h-12 mb-4" alt="Advanced Icon">
-                            <p class="font-semibold text-gray-900">Advanced</p>
-                            <p class="text-gray-500">$120/yr</p>
-                            <p class="text-blue-500 text-xs">2 months free</p>
-                        </label>
+                            <label for="adv-yearly"
+                                class="border-2 border-gray-300 p-6 rounded-lg w-full text-left cursor-pointer hover:border-blue-600 transition-all flex flex-col items-start peer-checked:border-blue-600 peer-checked:bg-blue-50">
+                                <img src="./assets/images/icon-advanced.svg" class="w-12 h-12 mb-4" alt="Advanced Icon">
+                                <p class="font-semibold text-gray-900">Advanced</p>
+                                <p class="text-gray-500">$120/yr</p>
+                                <p class="text-blue-500 text-xs">2 months free</p>
+                            </label>
+                        </div>
 
-                        <label for="pro-yearly"
-                            class="border-2 border-gray-300 p-6 rounded-lg w-full text-left cursor-pointer hover:border-blue-600 transition-all flex flex-col items-start">
+
+                        <div class="flex-1 basis-1">
                             <input type="radio" id="pro-yearly" name="plan" value="pro" class="hidden peer">
-                            <img src="./assets/images/icon-pro.svg" class="w-12 h-12 mb-4" alt="Pro Icon">
-                            <p class="font-semibold text-gray-900">Pro</p>
-                            <p class="text-gray-500">$150/yr</p>
-                            <p class="text-blue-500 text-xs">2 months free</p>
-                        </label>
+                            <label for="pro-yearly"
+                                class="border-2 border-gray-300 p-6 rounded-lg w-full text-left cursor-pointer hover:border-blue-600 transition-all flex flex-col items-start peer-checked:border-blue-600 peer-checked:bg-blue-50">
+                                <img src="./assets/images/icon-pro.svg" class="w-12 h-12 mb-4" alt="Pro Icon">
+                                <p class="font-semibold text-gray-900">Pro</p>
+                                <p class="text-gray-500">$150/yr</p>
+                                <p class="text-blue-500 text-xs">2 months free</p>
+                            </label>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Toggle for Monthly/Yearly -->
+
                 <div class="flex items-center justify-center p-4 bg-gray-100 rounded-lg mb-6">
                     <span class="text-gray-500 text-sm mr-4">Monthly</span>
                     <label class="relative inline-flex items-center cursor-pointer">
@@ -328,7 +346,7 @@
         </div>
 
     </div>
-    <script src="test.js"></script>
+    <script src="index.js"></script>
 </body>
 
 </html>

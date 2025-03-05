@@ -627,6 +627,9 @@
   .min-w-screen {
     min-width: 100vw;
   }
+  .flex-1 {
+    flex: 1;
+  }
   .flex-auto {
     flex: auto;
   }
@@ -647,6 +650,9 @@
   }
   .grow {
     flex-grow: 1;
+  }
+  .basis-1 {
+    flex-basis: calc(var(--spacing) * 1);
   }
   .basis-auto {
     flex-basis: auto;
@@ -1006,6 +1012,9 @@
   }
   .justify-items-stretch {
     justify-items: stretch;
+  }
+  .gap-1 {
+    gap: calc(var(--spacing) * 1);
   }
   .gap-3 {
     gap: calc(var(--spacing) * 3);
@@ -2218,14 +2227,29 @@
       border-color: var(--color-blue-500);
     }
   }
+  .peer-checked\:border-blue-600 {
+    &:is(:where(.peer):checked ~ *) {
+      border-color: var(--color-blue-600);
+    }
+  }
   .peer-checked\:bg-\[\#103c63\] {
     &:is(:where(.peer):checked ~ *) {
       background-color: #103c63;
     }
   }
+  .peer-checked\:bg-blue-50 {
+    &:is(:where(.peer):checked ~ *) {
+      background-color: var(--color-blue-50);
+    }
+  }
   .peer-checked\:bg-blue-100 {
     &:is(:where(.peer):checked ~ *) {
       background-color: var(--color-blue-100);
+    }
+  }
+  .peer-checked\:bg-blue-500 {
+    &:is(:where(.peer):checked ~ *) {
+      background-color: var(--color-blue-500);
     }
   }
   .peer-checked\:bg-blue-600 {
