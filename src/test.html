@@ -7,239 +7,299 @@
     <link href="./output.css" rel="stylesheet">
 </head>
 
-<body>
-    <!-- Step 1: Welcome Selection -->
-    <div id="personal-infoId" class="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">
-        <h2 class="text-2xl font-bold mb-2 text-gray-900">Personal Info</h2>
-        <p class="text-gray-600 mb-6">Please provide your name, email address, and phone number.</p>
-        <form>
-            <div class="mb-4">
-                <label id="nameLabel" class="block font-semibold mb-1 text-gray-700">Name</label>
-                <input id="nameId" type="text" placeholder="e.g.Stephen King"
-                    class="w-full border border-gray-300  rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 placeholder:font-bold placeholder:text-gray-400">
-                <span id="nameError" class="text-red-500 text-sm hidden"></span>
-            </div>
+<body class="bg-[#F0F5FF]">
+    <div id="main-container"
+        class="flex flex-row justify-self-center m-auto mt-[10%] p-4 w-[50%] min-h-[600px] shadow-lg rounded-lg bg-white">
+        <!-- Left Sidebar -->
+        <div id="left-container"
+            class="flex flex-col justify-start gap-5 w-[45%] h-[35.5rem] bg-contain bg-center bg-no-repeat bg-[url('./assets/images/bg-sidebar-desktop.svg')] p-10">
 
-            <div class="mb-4">
-                <label id="emailLabel" class="block font-semibold mb-1 text-gray-700">Email</label>
-                <input id="emailId" type="email" placeholder="e.g.stepenking@lorem.com"
-                    class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 placeholder:font-bold  placeholder:text-gray-400">
-                <span id="emailError" class="text-red-500 text-sm hidden"></span>
-            </div>
-
-            <div class="mb-4">
-                <label id="phoneLabel" class="block font-semibold mb-1 text-gray-700">Phone</label>
-                <input id="phoneId" type="number" placeholder="e.g.1234567890"
-                    class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 placeholder:font-bold  placeholder:text-gray-400">
-                <span id="phoneError" class="text-red-500 text-sm hidden"></span>
-            </div>
-        </form>
-        <button id="nextStepBtn"
-            class="w-full bg-blue-900 text-white font-medium py-2 rounded-lg mt-4 hover:bg-blue-700 transition duration-200">
-            Next Step
-        </button>
-    </div>
-
-
-    <!-- Step 2: Plan Selection -->
-    <div id="form-pageID" class="hidden max-w-lg mx-auto p-6 bg-white rounded-lg shadow-md">
-        <!-- Title -->
-        <h2 class="text-2xl font-bold text-[#103c63]">Select your plan</h2>
-        <p class="text-gray-500 text-sm mb-6">You have the option of monthly or yearly billing.</p>
-
-        <!-- Monthly Plan -->
-        <div id="monthly-plan">
-            <div class="flex justify-between gap-5 mb-6">
-                <label for="arc-m"
-                    class="border-2 border-gray-300 p-6 rounded-lg w-full text-left cursor-pointer hover:border-blue-600 transition-all flex flex-col items-start">
-                    <input type="radio" id="arc-m" name="plan" value="arcade" class="hidden peer">
-                    <img src="./assets/images/icon-arcade.svg" class="w-12 h-12 mb-4" alt="Arcade Icon">
-                    <p class="font-semibold text-gray-900">Arcade</p>
-                    <p class="text-gray-500">$9/mo</p>
-                </label>
-
-                <label for="adv-m"
-                    class="border-2 border-gray-300 p-6 rounded-lg w-full text-left cursor-pointer hover:border-blue-600 transition-all flex flex-col items-start">
-                    <input type="radio" id="adv-m" name="plan" value="advanced" class="hidden peer">
-                    <img src="./assets/images/icon-advanced.svg" class="w-12 h-12 mb-4" alt="Advanced Icon">
-                    <p class="font-semibold text-gray-900">Advanced</p>
-                    <p class="text-gray-500">$12/mo</p>
-                </label>
-
-                <label for="pro-m"
-                    class="border-2 border-gray-300 p-6 rounded-lg w-full text-left cursor-pointer hover:border-blue-600 transition-all flex flex-col items-start">
-                    <input type="radio" id="pro-m" name="plan" value="pro" class="hidden peer">
-                    <img src="./assets/images/icon-pro.svg" class="w-12 h-12 mb-4" alt="Pro Icon">
-                    <p class="font-semibold text-gray-900">Pro</p>
-                    <p class="text-gray-500">$15/mo</p>
-                </label>
-            </div>
-        </div>
-
-        <!-- Yearly Plan -->
-        <div id="yearly-plan" class="hidden">
-            <div class="flex justify-between gap-5 mb-6">
-                <label for="arc-yearly"
-                    class="border-2 border-gray-300 p-6 rounded-lg w-full text-left cursor-pointer hover:border-blue-600 transition-all flex flex-col items-start">
-                    <input type="radio" id="arc-yearly" name="plan" value="arcade" class="hidden peer">
-                    <img src="./assets/images/icon-arcade.svg" class="w-12 h-12 mb-4" alt="Arcade Icon">
-                    <p class="font-semibold text-gray-900">Arcade</p>
-                    <p class="text-gray-500">$1000/yr</p>
-                    <p class="text-blue-500 text-xs">2 months free</p>
-                </label>
-
-                <label for="adv-yearly"
-                    class="border-2 border-gray-300 p-6 rounded-lg w-full text-left cursor-pointer hover:border-blue-600 transition-all flex flex-col items-start">
-                    <input type="radio" id="adv-yearly" name="plan" value="advanced" class="hidden peer">
-                    <img src="./assets/images/icon-advanced.svg" class="w-12 h-12 mb-4" alt="Advanced Icon">
-                    <p class="font-semibold text-gray-900">Advanced</p>
-                    <p class="text-gray-500">$1500/yr</p>
-                    <p class="text-blue-500 text-xs">2 months free</p>
-                </label>
-
-                <label for="pro-yearly"
-                    class="border-2 border-gray-300 p-6 rounded-lg w-full text-left cursor-pointer hover:border-blue-600 transition-all flex flex-col items-start">
-                    <input type="radio" id="pro-yearly" name="plan" value="pro" class="hidden peer">
-                    <img src="./assets/images/icon-pro.svg" class="w-12 h-12 mb-4" alt="Pro Icon">
-                    <p class="font-semibold text-gray-900">Pro</p>
-                    <p class="text-gray-500">$2000/yr</p>
-                    <p class="text-blue-500 text-xs">2 months free</p>
-                </label>
-            </div>
-        </div>
-
-        <!-- Toggle for Monthly/Yearly -->
-        <div class="flex items-center justify-center p-4 bg-gray-100 rounded-lg mb-6">
-            <span class="text-gray-500 text-sm mr-4">Monthly</span>
-            <label class="relative inline-flex items-center cursor-pointer">
-                <input type="checkbox" id="billing-toggle" class="sr-only peer">
+            <div class="flex items-center">
                 <div
-                    class="w-12 h-7 bg-[#103c63] rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-1 after:left-1 after:bg-white after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#103c63]">
+                    class="w-12 h-12 flex items-center justify-center rounded-full border-2 text-white font-bold bg-blue-500">
+                    1</div>
+                <div class="ml-3">
+                    <p class="uppercase text-sm opacity-75 text-white">Step 1</p>
+                    <p class="uppercase font-bold text-white">Your Info</p>
                 </div>
-            </label>
-            <span class="text-gray-900 text-sm ml-4 font-semibold">Yearly</span>
-        </div>
+            </div>
 
-        <!-- Navigation Buttons -->
-        <div class="flex justify-between">
-            <button id="goBackBtn1" class="text-gray-500 hover:text-gray-700">Go Back</button>
-            <button id="nextStepBtn1"
-                class="bg-[#103c63] text-white font-medium py-2 px-6 rounded-lg hover:bg-blue-700 transition duration-200">
-                Next Step
-            </button>
+            <div class="flex items-center">
+                <div
+                    class="w-12 h-12 flex items-center justify-center rounded-full border-2 text-white font-bold bg-blue-500">
+                    2</div>
+                <div class="ml-3">
+                    <p class="uppercase text-sm opacity-75 text-white">Step 2</p>
+                    <p class="uppercase font-bold text-white">Select Plan</p>
+                </div>
+            </div>
+
+            <div class="flex items-center">
+                <div
+                    class="w-12 h-12 flex items-center justify-center rounded-full border-2 text-white font-bold bg-blue-500">
+                    3</div>
+                <div class="ml-3">
+                    <p class="uppercase text-sm opacity-75 text-white">Step 3</p>
+                    <p class="uppercase font-bold text-white">Add-Ons</p>
+                </div>
+            </div>
+
+            <div class="flex items-center">
+                <div
+                    class="w-12 h-12 flex items-center justify-center rounded-full border-2 text-white font-bold bg-blue-500">
+                    4</div>
+                <div class="ml-3">
+                    <p class="uppercase text-sm opacity-75 text-white">Step 4</p>
+                    <p class="uppercase font-bold text-white">Summary</p>
+                </div>
+            </div>
+        </div>
+        <!-- Right Container (Form Sections) -->
+        <div id="right-container" class="flex flex-col w-full justify-between pt-10 pb-5 pl-10 pr-8">
+            <!-- Step 1: Welcome Selection -->
+            <div id="personal-infoId" class="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">
+                <h2 class="text-2xl font-bold mb-2 text-gray-900">Personal Info</h2>
+                <p class="text-gray-600 mb-6">Please provide your name, email address, and phone number.</p>
+                <form>
+                    <div class="mb-4">
+                        <label id="nameLabel" class="block font-semibold mb-1 text-gray-700">Name</label>
+                        <input id="nameId" type="text" placeholder="e.g.Stephen King"
+                            class="w-full border border-gray-300  rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 placeholder:font-bold placeholder:text-gray-400">
+                        <span id="nameError" class="text-red-500 text-sm hidden"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label id="emailLabel" class="block font-semibold mb-1 text-gray-700">Email</label>
+                        <input id="emailId" type="email" placeholder="e.g.stepenking@lorem.com"
+                            class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 placeholder:font-bold  placeholder:text-gray-400">
+                        <span id="emailError" class="text-red-500 text-sm hidden"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label id="phoneLabel" class="block font-semibold mb-1 text-gray-700">Phone</label>
+                        <input id="phoneId" type="number" placeholder="e.g.1234567890"
+                            class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 placeholder:font-bold  placeholder:text-gray-400">
+                        <span id="phoneError" class="text-red-500 text-sm hidden"></span>
+                    </div>
+                </form>
+                <button id="nextStepBtn"
+                    class="w-full bg-blue-900 text-white font-medium py-2 rounded-lg mt-4 hover:bg-blue-700 transition duration-200">
+                    Next Step
+                </button>
+            </div>
+
+
+            <!-- Step 2: Plan Selection -->
+            <div id="form-pageID" class="hidden max-w-lg mx-auto p-6 bg-white rounded-lg shadow-md">
+                <!-- Title -->
+                <h2 class="text-2xl font-bold text-[#103c63]">Select your plan</h2>
+                <p class="text-gray-500 text-sm mb-6">You have the option of monthly or yearly billing.</p>
+
+                <!-- Monthly Plan -->
+                <div id="monthly-plan">
+                    <div class="flex justify-between gap-5 mb-6">
+                        <label for="arc-m"
+                            class="border-2 border-gray-300 p-6 rounded-lg w-full text-left cursor-pointer hover:border-blue-600 transition-all flex flex-col items-start">
+                            <input type="radio" id="arc-m" name="plan" value="arcade" class="hidden peer">
+                            <img src="./assets/images/icon-arcade.svg" class="w-12 h-12 mb-4" alt="Arcade Icon">
+                            <p class="font-semibold text-gray-900">Arcade</p>
+                            <p class="text-gray-500">$9/mo</p>
+                        </label>
+
+                        <label for="adv-m"
+                            class="border-2 border-gray-300 p-6 rounded-lg w-full text-left cursor-pointer hover:border-blue-600 transition-all flex flex-col items-start">
+                            <input type="radio" id="adv-m" name="plan" value="advanced" class="hidden peer">
+                            <img src="./assets/images/icon-advanced.svg" class="w-12 h-12 mb-4" alt="Advanced Icon">
+                            <p class="font-semibold text-gray-900">Advanced</p>
+                            <p class="text-gray-500">$12/mo</p>
+                        </label>
+
+                        <label for="pro-m"
+                            class="border-2 border-gray-300 p-6 rounded-lg w-full text-left cursor-pointer hover:border-blue-600 transition-all flex flex-col items-start">
+                            <input type="radio" id="pro-m" name="plan" value="pro" class="hidden peer">
+                            <img src="./assets/images/icon-pro.svg" class="w-12 h-12 mb-4" alt="Pro Icon">
+                            <p class="font-semibold text-gray-900">Pro</p>
+                            <p class="text-gray-500">$15/mo</p>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Yearly Plan -->
+                <div id="yearly-plan" class="hidden">
+                    <div class="flex justify-between gap-5 mb-6">
+                        <label for="arc-yearly"
+                            class="border-2 border-gray-300 p-6 rounded-lg w-full text-left cursor-pointer hover:border-blue-600 transition-all flex flex-col items-start">
+                            <input type="radio" id="arc-yearly" name="plan" value="arcade" class="hidden peer">
+                            <img src="./assets/images/icon-arcade.svg" class="w-12 h-12 mb-4" alt="Arcade Icon">
+                            <p class="font-semibold text-gray-900">Arcade</p>
+                            <p class="text-gray-500">$1000/yr</p>
+                            <p class="text-blue-500 text-xs">2 months free</p>
+                        </label>
+
+                        <label for="adv-yearly"
+                            class="border-2 border-gray-300 p-6 rounded-lg w-full text-left cursor-pointer hover:border-blue-600 transition-all flex flex-col items-start">
+                            <input type="radio" id="adv-yearly" name="plan" value="advanced" class="hidden peer">
+                            <img src="./assets/images/icon-advanced.svg" class="w-12 h-12 mb-4" alt="Advanced Icon">
+                            <p class="font-semibold text-gray-900">Advanced</p>
+                            <p class="text-gray-500">$1500/yr</p>
+                            <p class="text-blue-500 text-xs">2 months free</p>
+                        </label>
+
+                        <label for="pro-yearly"
+                            class="border-2 border-gray-300 p-6 rounded-lg w-full text-left cursor-pointer hover:border-blue-600 transition-all flex flex-col items-start">
+                            <input type="radio" id="pro-yearly" name="plan" value="pro" class="hidden peer">
+                            <img src="./assets/images/icon-pro.svg" class="w-12 h-12 mb-4" alt="Pro Icon">
+                            <p class="font-semibold text-gray-900">Pro</p>
+                            <p class="text-gray-500">$2000/yr</p>
+                            <p class="text-blue-500 text-xs">2 months free</p>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Toggle for Monthly/Yearly -->
+                <div class="flex items-center justify-center p-4 bg-gray-100 rounded-lg mb-6">
+                    <span class="text-gray-500 text-sm mr-4">Monthly</span>
+                    <label class="relative inline-flex items-center cursor-pointer">
+                        <input type="checkbox" id="billing-toggle" class="sr-only peer">
+                        <div
+                            class="w-12 h-7 bg-[#103c63] rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-1 after:left-1 after:bg-white after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#103c63]">
+                        </div>
+                    </label>
+                    <span class="text-gray-900 text-sm ml-4 font-semibold">Yearly</span>
+                </div>
+
+                <!-- Navigation Buttons -->
+                <div class="flex justify-between">
+                    <button id="goBackBtn1" class="text-gray-500 hover:text-gray-700">Go Back</button>
+                    <button id="nextStepBtn1"
+                        class="bg-[#103c63] text-white font-medium py-2 px-6 rounded-lg hover:bg-blue-700 transition duration-200">
+                        Next Step
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step 3: Add-ons -->
+            <div id="toggle-BillingID" class="hidden">
+                <h2 class="text-2xl font-bold text-gray-900">Pick add-ons</h2>
+                <p class="text-gray-500 mb-4">Add-ons help enhance your gaming experience.</p>
+
+                <div id="addOn-card-monthly" class="space-y-4 hidden">
+                    <label
+                        class="flex items-center justify-between p-4 border border-gray-300 rounded-lg cursor-pointer hover:border-blue-500">
+                        <div class="flex items-center gap-3">
+                            <input type="checkbox" id="small-storageId-monthly" data-price="2" class="w-5 h-5">
+                            <div>
+                                <p class="font-semibold text-gray-900">Small Storage</p>
+                                <p class="text-gray-500 text-sm">Extra storage space</p>
+                            </div>
+                        </div>
+                        <span class="text-blue-600 font-semibold">+$2/mo</span>
+                    </label>
+
+                    <label
+                        class="flex items-center justify-between p-4 border border-gray-300 rounded-lg cursor-pointer hover:border-blue-500">
+                        <div class="flex items-center gap-3">
+                            <input type="checkbox" id="medium-storageId-monthly" data-price="4" class="w-5 h-5">
+                            <div>
+                                <p class="font-semibold text-gray-900">Medium Storage</p>
+                                <p class="text-gray-500 text-sm">More space for your files</p>
+                            </div>
+                        </div>
+                        <span class="text-blue-600 font-semibold">+$4/mo</span>
+                    </label>
+
+                    <label
+                        class="flex items-center justify-between p-4 border border-gray-300 rounded-lg cursor-pointer hover:border-blue-500">
+                        <div class="flex items-center gap-3">
+                            <input type="checkbox" id="large-storageId-monthly" data-price="6" class="w-5 h-5">
+                            <div>
+                                <p class="font-semibold text-gray-900">Large Storage</p>
+                                <p class="text-gray-500 text-sm">Maximum cloud storage</p>
+                            </div>
+                        </div>
+                        <span class="text-blue-600 font-semibold">+$6/mo</span>
+                    </label>
+                </div>
+
+                <div id="addOn-card-yearly" class="space-y-4 hidden">
+                    <label
+                        class="flex items-center justify-between p-4 border border-gray-300 rounded-lg cursor-pointer hover:border-blue-500">
+                        <div class="flex items-center gap-3">
+                            <input type="checkbox" id="small-storageId-yearly" data-price="12" class="w-5 h-5">
+                            <div>
+                                <p class="font-semibold text-gray-900">Small Storage</p>
+                                <p class="text-gray-500 text-sm">Extra storage space</p>
+                            </div>
+                        </div>
+                        <span class="text-blue-600 font-semibold">+$12/yr</span>
+                    </label>
+
+                    <label
+                        class="flex items-center justify-between p-4 border border-gray-300 rounded-lg cursor-pointer hover:border-blue-500">
+                        <div class="flex items-center gap-3">
+                            <input type="checkbox" id="medium-storageId-yearly" data-price="14" class="w-5 h-5">
+                            <div>
+                                <p class="font-semibold text-gray-900">Medium Storage</p>
+                                <p class="text-gray-500 text-sm">More space for your files</p>
+                            </div>
+                        </div>
+                        <span class="text-blue-600 font-semibold">+$14/yr</span>
+                    </label>
+
+                    <label
+                        class="flex items-center justify-between p-4 border border-gray-300 rounded-lg cursor-pointer hover:border-blue-500">
+                        <div class="flex items-center gap-3">
+                            <input type="checkbox" id="large-storageId-yearly" data-price="16" class="w-5 h-5">
+                            <div>
+                                <p class="font-semibold text-gray-900">Large Storage</p>
+                                <p class="text-gray-500 text-sm">Maximum cloud storage</p>
+                            </div>
+                        </div>
+                        <span class="text-blue-600 font-semibold">+$16/yr</span>
+                    </label>
+                </div>
+
+                <div class="flex justify-between items-center mt-6">
+                    <button id="goBackBtn2" class="text-gray-500 font-semibold hover:text-gray-900">Go Back</button>
+                    <button id="nextStepBtn2" disabled
+                        class="bg-blue-900 text-white py-2 px-6 rounded-lg font-semibold hover:bg-blue-700 disabled:bg-gray-300">Next
+                        Step</button>
+                </div>
+            </div>
+
+
+            <!-- Step 4: Summary -->
+            <div id="finishing-upId" class="hidden">
+                <h2 class="text-2xl font-bold text-gray-900">Finishing up</h2>
+                <p class="text-gray-500 mb-4">Double-check everything looks OK before confirming.</p>
+
+                <div id="totalPriceDisplay"></div>
+
+                <div class="flex justify-between items-center mt-6">
+                    <button id="goBackBtn3" class="text-gray-500 font-semibold hover:text-gray-900">Go Back</button>
+                    <button id="confirmBtn"
+                        class="bg-indigo-600 text-white py-2 px-6 rounded-lg font-semibold hover:bg-indigo-500">Confirm</button>
+                </div>
+            </div>
+
+
+            <!-- Step 5: Thank You -->
+            <div id="thankyou-Id" class="hidden flex flex-col items-center justify-center min-h-screen text-center">
+                <div class="bg-red-100 rounded-full p-6">
+                    <img src="./assets/images/icon-thank-you.svg" alt="Thank You Icon" class="w-16 h-16">
+                </div>
+                <h2 class="text-2xl font-bold text-gray-900 mt-6">Thank you!</h2>
+                <p class="text-gray-500 max-w-md mt-2">
+                    Thanks for confirming your subscription! We hope you have fun using our platform. If you ever need
+                    support,
+                    please feel free to email us at
+                    <a href="mailto:support@loremgaming.com"
+                        class="text-blue-600 font-medium">support@loremgaming.com</a>.
+                </p>
+            </div>
+
         </div>
     </div>
-
-    <!-- Step 3: Add-ons -->
-    <div id="toggle-BillingID" class="hidden">
-        <h2 class="text-2xl font-bold text-gray-900">Pick add-ons</h2>
-        <p class="text-gray-500 mb-4">Add-ons help enhance your gaming experience.</p>
-
-        <div id="addOn-card-monthly" class="space-y-4 hidden">
-            <label
-                class="flex items-center justify-between p-4 border border-gray-300 rounded-lg cursor-pointer hover:border-blue-500">
-                <div class="flex items-center gap-3">
-                    <input type="checkbox" id="small-storageId-monthly" data-price="2" class="w-5 h-5">
-                    <div>
-                        <p class="font-semibold text-gray-900">Small Storage</p>
-                        <p class="text-gray-500 text-sm">Extra storage space</p>
-                    </div>
-                </div>
-                <span class="text-blue-600 font-semibold">+$2/mo</span>
-            </label>
-
-            <label
-                class="flex items-center justify-between p-4 border border-gray-300 rounded-lg cursor-pointer hover:border-blue-500">
-                <div class="flex items-center gap-3">
-                    <input type="checkbox" id="medium-storageId-monthly" data-price="4" class="w-5 h-5">
-                    <div>
-                        <p class="font-semibold text-gray-900">Medium Storage</p>
-                        <p class="text-gray-500 text-sm">More space for your files</p>
-                    </div>
-                </div>
-                <span class="text-blue-600 font-semibold">+$4/mo</span>
-            </label>
-
-            <label
-                class="flex items-center justify-between p-4 border border-gray-300 rounded-lg cursor-pointer hover:border-blue-500">
-                <div class="flex items-center gap-3">
-                    <input type="checkbox" id="large-storageId-monthly" data-price="6" class="w-5 h-5">
-                    <div>
-                        <p class="font-semibold text-gray-900">Large Storage</p>
-                        <p class="text-gray-500 text-sm">Maximum cloud storage</p>
-                    </div>
-                </div>
-                <span class="text-blue-600 font-semibold">+$6/mo</span>
-            </label>
-        </div>
-
-        <div id="addOn-card-yearly" class="space-y-4 hidden">
-            <label
-                class="flex items-center justify-between p-4 border border-gray-300 rounded-lg cursor-pointer hover:border-blue-500">
-                <div class="flex items-center gap-3">
-                    <input type="checkbox" id="small-storageId-yearly" data-price="12" class="w-5 h-5">
-                    <div>
-                        <p class="font-semibold text-gray-900">Small Storage</p>
-                        <p class="text-gray-500 text-sm">Extra storage space</p>
-                    </div>
-                </div>
-                <span class="text-blue-600 font-semibold">+$12/yr</span>
-            </label>
-
-            <label
-                class="flex items-center justify-between p-4 border border-gray-300 rounded-lg cursor-pointer hover:border-blue-500">
-                <div class="flex items-center gap-3">
-                    <input type="checkbox" id="medium-storageId-yearly" data-price="14" class="w-5 h-5">
-                    <div>
-                        <p class="font-semibold text-gray-900">Medium Storage</p>
-                        <p class="text-gray-500 text-sm">More space for your files</p>
-                    </div>
-                </div>
-                <span class="text-blue-600 font-semibold">+$14/yr</span>
-            </label>
-
-            <label
-                class="flex items-center justify-between p-4 border border-gray-300 rounded-lg cursor-pointer hover:border-blue-500">
-                <div class="flex items-center gap-3">
-                    <input type="checkbox" id="large-storageId-yearly" data-price="16" class="w-5 h-5">
-                    <div>
-                        <p class="font-semibold text-gray-900">Large Storage</p>
-                        <p class="text-gray-500 text-sm">Maximum cloud storage</p>
-                    </div>
-                </div>
-                <span class="text-blue-600 font-semibold">+$16/yr</span>
-            </label>
-        </div>
-
-        <div class="flex justify-between items-center mt-6">
-            <button id="goBackBtn2" class="text-gray-500 font-semibold hover:text-gray-900">Go Back</button>
-            <button id="nextStepBtn2" disabled
-                class="bg-blue-900 text-white py-2 px-6 rounded-lg font-semibold hover:bg-blue-700 disabled:bg-gray-300">Next
-                Step</button>
-        </div>
-    </div>
-
-
-    <!-- Step 4: Summary -->
-    <div id="finishing-upId" class="hidden">
-        <h2 class="text-2xl font-bold text-gray-900">Finishing up</h2>
-        <p class="text-gray-500 mb-4">Double-check everything looks OK before confirming.</p>
-
-        <div id="totalPriceDisplay"></div>
-
-        <div class="flex justify-between items-center mt-6">
-            <button id="goBackBtn3" class="text-gray-500 font-semibold hover:text-gray-900">Go Back</button>
-            <button id="confirmBtn"
-                class="bg-indigo-600 text-white py-2 px-6 rounded-lg font-semibold hover:bg-indigo-500">Confirm</button>
-        </div>
-    </div>
-
-
-    <!-- Step 5: Thank You -->
-    <div id="thankyou-Id" class="hidden">
-        <img src="./assets/images/icon-thank-you.svg" alt="icon-thank-you">
-    </div>
-
     <script src="test.js"></script>
 </body>
 

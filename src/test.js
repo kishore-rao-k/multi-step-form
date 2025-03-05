@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const nextStepBtn2 = document.getElementById("nextStepBtn2");
   const goBackBtn1 = document.getElementById("goBackBtn1");
   const goBackBtn2 = document.getElementById("goBackBtn2");
+  const goBackBtn3 = document.getElementById("goBackBtn3");
   const confirmBtn = document.getElementById("confirmBtn");
 
   // Billing period toggle
@@ -74,6 +75,7 @@ document.addEventListener("DOMContentLoaded", function () {
     nextStepBtn2.style.display = "none";
     goBackBtn1.style.display = "none";
     goBackBtn2.style.display = "none";
+    goBackBtn3.style.display = "none";
     confirmBtn.style.display = "none";
 
     // Show the relevant "Next Step" and "Go Back" buttons based on currentStep
@@ -90,6 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
       nextStepBtn2.disabled = false; // Enable nextStepBtn2 once a plan is selected
     } else if (currentStep === 3) {
       confirmBtn.style.display = "inline-block"; // Show "Confirm" button
+      goBackBtn3.style.display = "inline-block"; // Show "Go Back 3"
     }
   }
 
@@ -142,41 +145,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     return isValid;
-  }
-
-  // Step visibility and button control
-  function updateStep() {
-    // Hide all the steps
-    steps.forEach((stepId) => {
-      document.getElementById(stepId).classList.add("hidden");
-    });
-
-    // Show the current step
-    document.getElementById(steps[currentStep]).classList.remove("hidden");
-
-    // Hide all Next buttons and confirm button
-    nextStepBtn.style.display = "none";
-    nextStepBtn1.style.display = "none";
-    nextStepBtn2.style.display = "none";
-    goBackBtn1.style.display = "none";
-    goBackBtn2.style.display = "none";
-    confirmBtn.style.display = "none";
-
-    // Show the relevant "Next Step" and "Go Back" buttons based on currentStep
-    if (currentStep === 0) {
-      nextStepBtn.style.display = "inline-block"; // Show "Next Step"
-      nextStepBtn.disabled = false; // Enable nextStepBtn when on Step 0
-    } else if (currentStep === 1) {
-      nextStepBtn1.style.display = "inline-block"; // Show "Next Step 1"
-      goBackBtn1.style.display = "inline-block"; // Show "Go Back"
-      nextStepBtn1.disabled = false; // Enable nextStepBtn1 once a plan is selected
-    } else if (currentStep === 2) {
-      nextStepBtn2.style.display = "inline-block"; // Show "Next Step 2"
-      goBackBtn2.style.display = "inline-block"; // Show "Go Back 2"
-      nextStepBtn2.disabled = false; // Enable nextStepBtn2 once a plan is selected
-    } else if (currentStep === 3) {
-      confirmBtn.style.display = "inline-block"; // Show "Confirm" button
-    }
   }
 
   // Toggle between monthly and yearly plans
@@ -235,6 +203,29 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
+  // Handle add-ons selection
+  function updateAddons() {
+    selectedAddons = [];
+    additionalCost = 0;
+
+    const addons = document.querySelectorAll("input[type='checkbox']:checked");
+    addons.forEach((addon) => {
+      const addonId = addon.id;
+      const addonObj = addonsobj[billingPeriod].find((a) => a.id === addonId);
+      if (addonObj) {
+        selectedAddons.push(addonObj);
+        additionalCost += addonObj.price;
+      }
+    });
+
+    nextStepBtn2.disabled = selectedAddons.length === 0;
+  }
+
+  const addons = document.querySelectorAll("input[type='checkbox']");
+  addons.forEach((addon) => {
+    addon.addEventListener("change", updateAddons);
+  });
+
   // Button clicks for moving to the next step
   if (nextStepBtn) {
     nextStepBtn.addEventListener("click", () => {
@@ -263,6 +254,34 @@ document.addEventListener("DOMContentLoaded", function () {
         currentStep = 3; // Proceed to Step 3 (Summary)
         updateStep();
         renderSummary(); // Make sure to render the summary after step 3
+      }
+    });
+  }
+
+  // Go Back button clicks
+  if (goBackBtn1) {
+    goBackBtn1.addEventListener("click", () => {
+      if (currentStep === 1) {
+        currentStep = 0;
+        updateStep();
+      }
+    });
+  }
+
+  if (goBackBtn2) {
+    goBackBtn2.addEventListener("click", () => {
+      if (currentStep === 2) {
+        currentStep = 1;
+        updateStep();
+      }
+    });
+  }
+
+  if (goBackBtn3) {
+    goBackBtn3.addEventListener("click", () => {
+      if (currentStep === 3) {
+        currentStep = 2;
+        updateStep();
       }
     });
   }
