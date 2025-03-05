@@ -280,23 +280,42 @@ document.addEventListener("DOMContentLoaded", function () {
     const totalPriceElement = document.getElementById("totalPriceDisplay");
 
     totalPriceElement.innerHTML = `
-        <p><strong>${selectedPlanName} (${
+        <div class="bg-gray-100 p-4 rounded-lg shadow-sm">
+            <div class="flex justify-between items-center font-semibold text-gray-900">
+                <span>${selectedPlanName} (${
       billingPeriod === "monthly" ? "Monthly" : "Yearly"
-    })</strong></p>
-        <p>Plan price: $${selectedPlanPrice} / ${
+    })</span>
+                <span class="text-gray-900">$${selectedPlanPrice}/${
       billingPeriod === "monthly" ? "mo" : "yr"
-    }</p>
-        <div id="selectedAddonsSummary">${selectedAddons
-          .map((addon) => {
-            return `<p>${addon.name} +$${addon.price} / ${
-              billingPeriod === "monthly" ? "mo" : "yr"
-            }</p>`;
-          })
-          .join("")}</div>
-        <p>Total price: $${totalPrice} / ${
+    }</span>
+            </div>
+            <a href="#" class="text-blue-600 text-sm underline">Change</a>
+            <hr class="my-2 border-gray-300">
+            <div id="selectedAddonsSummary" class="text-gray-500">
+                ${selectedAddons
+                  .map((addon) => {
+                    return `
+                        <div class="flex justify-between items-center">
+                            <span>${addon.name}</span>
+                            <span class="text-gray-900">+$${addon.price}/${
+                      billingPeriod === "monthly" ? "mo" : "yr"
+                    }</span>
+                        </div>
+                    `;
+                  })
+                  .join("")}
+            </div>
+        </div>
+
+        <div class="flex justify-between mt-4 font-semibold text-gray-500">
+            <span>Total (per ${
+              billingPeriod === "monthly" ? "month" : "year"
+            })</span>
+            <span class="text-indigo-600 text-lg font-bold">$${totalPrice}/${
       billingPeriod === "monthly" ? "mo" : "yr"
-    }</p>
-      `;
+    }</span>
+        </div>
+    `;
   }
 
   updateStep(); // Initialize the first step

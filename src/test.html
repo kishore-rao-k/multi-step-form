@@ -132,46 +132,108 @@
 
     <!-- Step 3: Add-ons -->
     <div id="toggle-BillingID" class="hidden">
+        <h2 class="text-2xl font-bold text-gray-900">Pick add-ons</h2>
+        <p class="text-gray-500 mb-4">Add-ons help enhance your gaming experience.</p>
+
         <div id="addOn-card-monthly" class="space-y-4 hidden">
-            <label>
-                <input type="checkbox" id="small-storageId-monthly" data-price="2"> Small Storage (+$2)
+            <label
+                class="flex items-center justify-between p-4 border border-gray-300 rounded-lg cursor-pointer hover:border-blue-500">
+                <div class="flex items-center gap-3">
+                    <input type="checkbox" id="small-storageId-monthly" data-price="2" class="w-5 h-5">
+                    <div>
+                        <p class="font-semibold text-gray-900">Small Storage</p>
+                        <p class="text-gray-500 text-sm">Extra storage space</p>
+                    </div>
+                </div>
+                <span class="text-blue-600 font-semibold">+$2/mo</span>
             </label>
-            <label>
-                <input type="checkbox" id="medium-storageId-monthly" data-price="4"> Medium Storage (+$4)
+
+            <label
+                class="flex items-center justify-between p-4 border border-gray-300 rounded-lg cursor-pointer hover:border-blue-500">
+                <div class="flex items-center gap-3">
+                    <input type="checkbox" id="medium-storageId-monthly" data-price="4" class="w-5 h-5">
+                    <div>
+                        <p class="font-semibold text-gray-900">Medium Storage</p>
+                        <p class="text-gray-500 text-sm">More space for your files</p>
+                    </div>
+                </div>
+                <span class="text-blue-600 font-semibold">+$4/mo</span>
             </label>
-            <label>
-                <input type="checkbox" id="large-storageId-monthly" data-price="6"> Large Storage (+$6)
+
+            <label
+                class="flex items-center justify-between p-4 border border-gray-300 rounded-lg cursor-pointer hover:border-blue-500">
+                <div class="flex items-center gap-3">
+                    <input type="checkbox" id="large-storageId-monthly" data-price="6" class="w-5 h-5">
+                    <div>
+                        <p class="font-semibold text-gray-900">Large Storage</p>
+                        <p class="text-gray-500 text-sm">Maximum cloud storage</p>
+                    </div>
+                </div>
+                <span class="text-blue-600 font-semibold">+$6/mo</span>
             </label>
         </div>
+
         <div id="addOn-card-yearly" class="space-y-4 hidden">
-            <label>
-                <input type="checkbox" id="small-storageId-yearly" data-price="12"> Small Storage (+$12)
+            <label
+                class="flex items-center justify-between p-4 border border-gray-300 rounded-lg cursor-pointer hover:border-blue-500">
+                <div class="flex items-center gap-3">
+                    <input type="checkbox" id="small-storageId-yearly" data-price="12" class="w-5 h-5">
+                    <div>
+                        <p class="font-semibold text-gray-900">Small Storage</p>
+                        <p class="text-gray-500 text-sm">Extra storage space</p>
+                    </div>
+                </div>
+                <span class="text-blue-600 font-semibold">+$12/yr</span>
             </label>
-            <label>
-                <input type="checkbox" id="medium-storageId-yearly" data-price="14"> Medium Storage (+$14)
+
+            <label
+                class="flex items-center justify-between p-4 border border-gray-300 rounded-lg cursor-pointer hover:border-blue-500">
+                <div class="flex items-center gap-3">
+                    <input type="checkbox" id="medium-storageId-yearly" data-price="14" class="w-5 h-5">
+                    <div>
+                        <p class="font-semibold text-gray-900">Medium Storage</p>
+                        <p class="text-gray-500 text-sm">More space for your files</p>
+                    </div>
+                </div>
+                <span class="text-blue-600 font-semibold">+$14/yr</span>
             </label>
-            <label>
-                <input type="checkbox" id="large-storageId-yearly" data-price="16"> Large Storage (+$16)
+
+            <label
+                class="flex items-center justify-between p-4 border border-gray-300 rounded-lg cursor-pointer hover:border-blue-500">
+                <div class="flex items-center gap-3">
+                    <input type="checkbox" id="large-storageId-yearly" data-price="16" class="w-5 h-5">
+                    <div>
+                        <p class="font-semibold text-gray-900">Large Storage</p>
+                        <p class="text-gray-500 text-sm">Maximum cloud storage</p>
+                    </div>
+                </div>
+                <span class="text-blue-600 font-semibold">+$16/yr</span>
             </label>
         </div>
 
-        <!-- Container for dynamically rendering add-ons -->
-        <!-- <div id="addonContainer" class="space-y-4"></div> This is the new container -->
-
-        <div>
-            <button id="goBackBtn2">Go Back</button>
-            <button id="nextStepBtn2" disabled>Next Step 2</button>
+        <div class="flex justify-between items-center mt-6">
+            <button id="goBackBtn2" class="text-gray-500 font-semibold hover:text-gray-900">Go Back</button>
+            <button id="nextStepBtn2" disabled
+                class="bg-blue-900 text-white py-2 px-6 rounded-lg font-semibold hover:bg-blue-700 disabled:bg-gray-300">Next
+                Step</button>
         </div>
     </div>
+
 
     <!-- Step 4: Summary -->
     <div id="finishing-upId" class="hidden">
+        <h2 class="text-2xl font-bold text-gray-900">Finishing up</h2>
+        <p class="text-gray-500 mb-4">Double-check everything looks OK before confirming.</p>
+
         <div id="totalPriceDisplay"></div>
-        <div>
-            <button id="confirmBtn">Confirm</button>
-            <button id="goBackBtn3">Go Back</button>
+
+        <div class="flex justify-between items-center mt-6">
+            <button id="goBackBtn3" class="text-gray-500 font-semibold hover:text-gray-900">Go Back</button>
+            <button id="confirmBtn"
+                class="bg-indigo-600 text-white py-2 px-6 rounded-lg font-semibold hover:bg-indigo-500">Confirm</button>
         </div>
     </div>
+
 
     <!-- Step 5: Thank You -->
     <div id="thankyou-Id" class="hidden">
