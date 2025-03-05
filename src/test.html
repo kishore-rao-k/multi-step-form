@@ -10,54 +10,61 @@
 <body class="bg-[#F0F5FF]">
     <div id="main-container"
         class="flex flex-row justify-self-center m-auto mt-[10%] p-4 w-[50%] min-h-[600px] shadow-lg rounded-lg bg-white">
-        <!-- Left Sidebar -->
+
         <div id="left-container"
             class="flex flex-col justify-start gap-5 w-[45%] h-[35.5rem] bg-contain bg-center bg-no-repeat bg-[url('./assets/images/bg-sidebar-desktop.svg')] p-10">
 
             <div class="flex items-center">
-                <div
+                <div id="step-1"
                     class="w-12 h-12 flex items-center justify-center rounded-full border-2 text-white font-bold bg-blue-500">
-                    1</div>
+                    1
+                </div>
                 <div class="ml-3">
                     <p class="uppercase text-sm opacity-75 text-white">Step 1</p>
                     <p class="uppercase font-bold text-white">Your Info</p>
                 </div>
             </div>
 
+
             <div class="flex items-center">
-                <div
+                <div id="step-2"
                     class="w-12 h-12 flex items-center justify-center rounded-full border-2 text-white font-bold bg-blue-500">
-                    2</div>
+                    2
+                </div>
                 <div class="ml-3">
                     <p class="uppercase text-sm opacity-75 text-white">Step 2</p>
                     <p class="uppercase font-bold text-white">Select Plan</p>
                 </div>
             </div>
 
+
             <div class="flex items-center">
-                <div
+                <div id="step-3"
                     class="w-12 h-12 flex items-center justify-center rounded-full border-2 text-white font-bold bg-blue-500">
-                    3</div>
+                    3
+                </div>
                 <div class="ml-3">
                     <p class="uppercase text-sm opacity-75 text-white">Step 3</p>
                     <p class="uppercase font-bold text-white">Add-Ons</p>
                 </div>
             </div>
 
+
             <div class="flex items-center">
-                <div
+                <div id="step-4"
                     class="w-12 h-12 flex items-center justify-center rounded-full border-2 text-white font-bold bg-blue-500">
-                    4</div>
+                    4
+                </div>
                 <div class="ml-3">
                     <p class="uppercase text-sm opacity-75 text-white">Step 4</p>
                     <p class="uppercase font-bold text-white">Summary</p>
                 </div>
             </div>
         </div>
-        <!-- Right Container (Form Sections) -->
+
         <div id="right-container" class="flex flex-col w-full justify-between pt-10 pb-5 pl-10 pr-8">
-            <!-- Step 1: Welcome Selection -->
-            <div id="personal-infoId" class="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">
+
+            <div id="personal-infoId" class="max-w-md mx-auto">
                 <h2 class="text-2xl font-bold mb-2 text-gray-900">Personal Info</h2>
                 <p class="text-gray-600 mb-6">Please provide your name, email address, and phone number.</p>
                 <form>
@@ -82,15 +89,12 @@
                         <span id="phoneError" class="text-red-500 text-sm hidden"></span>
                     </div>
                 </form>
-                <button id="nextStepBtn"
-                    class="w-full bg-blue-900 text-white font-medium py-2 rounded-lg mt-4 hover:bg-blue-700 transition duration-200">
-                    Next Step
-                </button>
+
             </div>
 
 
-            <!-- Step 2: Plan Selection -->
-            <div id="form-pageID" class="hidden max-w-lg mx-auto p-6 bg-white rounded-lg shadow-md">
+
+            <div id="form-pageID" class="hidden ">
                 <!-- Title -->
                 <h2 class="text-2xl font-bold text-[#103c63]">Select your plan</h2>
                 <p class="text-gray-500 text-sm mb-6">You have the option of monthly or yearly billing.</p>
@@ -132,7 +136,7 @@
                             <input type="radio" id="arc-yearly" name="plan" value="arcade" class="hidden peer">
                             <img src="./assets/images/icon-arcade.svg" class="w-12 h-12 mb-4" alt="Arcade Icon">
                             <p class="font-semibold text-gray-900">Arcade</p>
-                            <p class="text-gray-500">$1000/yr</p>
+                            <p class="text-gray-500">$90/yr</p>
                             <p class="text-blue-500 text-xs">2 months free</p>
                         </label>
 
@@ -141,7 +145,7 @@
                             <input type="radio" id="adv-yearly" name="plan" value="advanced" class="hidden peer">
                             <img src="./assets/images/icon-advanced.svg" class="w-12 h-12 mb-4" alt="Advanced Icon">
                             <p class="font-semibold text-gray-900">Advanced</p>
-                            <p class="text-gray-500">$1500/yr</p>
+                            <p class="text-gray-500">$120/yr</p>
                             <p class="text-blue-500 text-xs">2 months free</p>
                         </label>
 
@@ -150,7 +154,7 @@
                             <input type="radio" id="pro-yearly" name="plan" value="pro" class="hidden peer">
                             <img src="./assets/images/icon-pro.svg" class="w-12 h-12 mb-4" alt="Pro Icon">
                             <p class="font-semibold text-gray-900">Pro</p>
-                            <p class="text-gray-500">$2000/yr</p>
+                            <p class="text-gray-500">$150/yr</p>
                             <p class="text-blue-500 text-xs">2 months free</p>
                         </label>
                     </div>
@@ -168,17 +172,9 @@
                     <span class="text-gray-900 text-sm ml-4 font-semibold">Yearly</span>
                 </div>
 
-                <!-- Navigation Buttons -->
-                <div class="flex justify-between">
-                    <button id="goBackBtn1" class="text-gray-500 hover:text-gray-700">Go Back</button>
-                    <button id="nextStepBtn1"
-                        class="bg-[#103c63] text-white font-medium py-2 px-6 rounded-lg hover:bg-blue-700 transition duration-200">
-                        Next Step
-                    </button>
-                </div>
+
             </div>
 
-            <!-- Step 3: Add-ons -->
             <div id="toggle-BillingID" class="hidden">
                 <h2 class="text-2xl font-bold text-gray-900">Pick add-ons</h2>
                 <p class="text-gray-500 mb-4">Add-ons help enhance your gaming experience.</p>
@@ -193,7 +189,7 @@
                                 <p class="text-gray-500 text-sm">Extra storage space</p>
                             </div>
                         </div>
-                        <span class="text-blue-600 font-semibold">+$2/mo</span>
+                        <span class="text-blue-600 font-semibold">+$1/mo</span>
                     </label>
 
                     <label
@@ -205,7 +201,7 @@
                                 <p class="text-gray-500 text-sm">More space for your files</p>
                             </div>
                         </div>
-                        <span class="text-blue-600 font-semibold">+$4/mo</span>
+                        <span class="text-blue-600 font-semibold">+$2/mo</span>
                     </label>
 
                     <label
@@ -217,7 +213,7 @@
                                 <p class="text-gray-500 text-sm">Maximum cloud storage</p>
                             </div>
                         </div>
-                        <span class="text-blue-600 font-semibold">+$6/mo</span>
+                        <span class="text-blue-600 font-semibold">+$2/mo</span>
                     </label>
                 </div>
 
@@ -231,7 +227,7 @@
                                 <p class="text-gray-500 text-sm">Extra storage space</p>
                             </div>
                         </div>
-                        <span class="text-blue-600 font-semibold">+$12/yr</span>
+                        <span class="text-blue-600 font-semibold">+$10/yr</span>
                     </label>
 
                     <label
@@ -243,7 +239,7 @@
                                 <p class="text-gray-500 text-sm">More space for your files</p>
                             </div>
                         </div>
-                        <span class="text-blue-600 font-semibold">+$14/yr</span>
+                        <span class="text-blue-600 font-semibold">+$20/yr</span>
                     </label>
 
                     <label
@@ -255,36 +251,26 @@
                                 <p class="text-gray-500 text-sm">Maximum cloud storage</p>
                             </div>
                         </div>
-                        <span class="text-blue-600 font-semibold">+$16/yr</span>
+                        <span class="text-blue-600 font-semibold">+$20/yr</span>
                     </label>
                 </div>
 
-                <div class="flex justify-between items-center mt-6">
-                    <button id="goBackBtn2" class="text-gray-500 font-semibold hover:text-gray-900">Go Back</button>
-                    <button id="nextStepBtn2" disabled
-                        class="bg-blue-900 text-white py-2 px-6 rounded-lg font-semibold hover:bg-blue-700 disabled:bg-gray-300">Next
-                        Step</button>
-                </div>
+
             </div>
 
 
-            <!-- Step 4: Summary -->
+
             <div id="finishing-upId" class="hidden">
                 <h2 class="text-2xl font-bold text-gray-900">Finishing up</h2>
                 <p class="text-gray-500 mb-4">Double-check everything looks OK before confirming.</p>
 
                 <div id="totalPriceDisplay"></div>
 
-                <div class="flex justify-between items-center mt-6">
-                    <button id="goBackBtn3" class="text-gray-500 font-semibold hover:text-gray-900">Go Back</button>
-                    <button id="confirmBtn"
-                        class="bg-indigo-600 text-white py-2 px-6 rounded-lg font-semibold hover:bg-indigo-500">Confirm</button>
-                </div>
+
             </div>
 
 
-            <!-- Step 5: Thank You -->
-            <div id="thankyou-Id" class="hidden flex flex-col items-center justify-center min-h-screen text-center">
+            <div id="thankyou-Id" class="hidden flex flex-col items-center justify-center text-center">
                 <div class="bg-red-100 rounded-full p-6">
                     <img src="./assets/images/icon-thank-you.svg" alt="Thank You Icon" class="w-16 h-16">
                 </div>
@@ -298,7 +284,37 @@
                 </p>
             </div>
 
+
+            <div class="flex justify-between items-center mt-6">
+
+                <div>
+                    <button id="goBackBtn1" class="text-gray-500 hover:text-gray-700 hidden">Go Back</button>
+                    <button id="goBackBtn2" class="text-gray-500 hover:text-gray-700 hidden">Go Back</button>
+                    <button id="goBackBtn3" class="text-gray-500 hover:text-gray-700 hidden">Go Back</button>
+                </div>
+
+
+                <div class="flex gap-4">
+                    <button id="nextStepBtn"
+                        class="bg-blue-900 text-white font-medium py-2 px-6 rounded-lg hover:bg-blue-700 transition duration-200">
+                        Next Step
+                    </button>
+                    <button id="nextStepBtn1"
+                        class="bg-[#103c63] text-white font-medium py-2 px-6 rounded-lg hover:bg-blue-700 transition duration-200 hidden">
+                        Next Step
+                    </button>
+                    <button id="nextStepBtn2"
+                        class="bg-blue-900 text-white font-medium py-2 px-6 rounded-lg hover:bg-blue-700 transition duration-200 hidden">
+                        Next Step
+                    </button>
+                    <button id="confirmBtn"
+                        class="bg-indigo-600 text-white font-medium py-2 px-6 rounded-lg hover:bg-indigo-500 hidden">
+                        Confirm
+                    </button>
+                </div>
+            </div>
         </div>
+
     </div>
     <script src="test.js"></script>
 </body>

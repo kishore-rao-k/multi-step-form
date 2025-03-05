@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", function () {
     "thankyou-Id",
   ];
 
-  // Buttons
   const nextStepBtn = document.getElementById("nextStepBtn");
   const nextStepBtn1 = document.getElementById("nextStepBtn1");
   const nextStepBtn2 = document.getElementById("nextStepBtn2");
@@ -17,7 +16,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const goBackBtn3 = document.getElementById("goBackBtn3");
   const confirmBtn = document.getElementById("confirmBtn");
 
-  // Billing period toggle
   const billingToggle = document.getElementById("billing-toggle");
 
   let selectedPlanPrice = 0;
@@ -27,18 +25,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const addonsobj = {
     monthly: [
-      { id: "small-storageId-monthly", name: "Small Storage", price: 2 },
-      { id: "medium-storageId-monthly", name: "Medium Storage", price: 4 },
-      { id: "large-storageId-monthly", name: "Large Storage", price: 6 },
+      { id: "small-storageId-monthly", name: "Small Storage", price: 1 },
+      { id: "medium-storageId-monthly", name: "Medium Storage", price: 2 },
+      { id: "large-storageId-monthly", name: "Large Storage", price: 2 },
     ],
     yearly: [
-      { id: "small-storageId-yearly", name: "Small Storage", price: 12 },
-      { id: "medium-storageId-yearly", name: "Medium Storage", price: 14 },
-      { id: "large-storageId-yearly", name: "Large Storage", price: 16 },
+      { id: "small-storageId-yearly", name: "Small Storage", price: 10 },
+      { id: "medium-storageId-yearly", name: "Medium Storage", price: 20 },
+      { id: "large-storageId-yearly", name: "Large Storage", price: 20 },
     ],
   };
 
-  let billingPeriod = "monthly"; // Default billing period
+  let billingPeriod = "monthly";
 
   const plansobj = [
     {
@@ -52,55 +50,44 @@ document.addEventListener("DOMContentLoaded", function () {
     {
       billingPeriod: "yearly",
       plans: [
-        { id: "arc-yearly", planName: "Arcade", planPrice: 1000 },
-        { id: "adv-yearly", planName: "Advanced", planPrice: 1500 },
-        { id: "pro-yearly", planName: "Pro", planPrice: 2000 },
+        { id: "arc-yearly", planName: "Arcade", planPrice: 90 },
+        { id: "adv-yearly", planName: "Advanced", planPrice: 120 },
+        { id: "pro-yearly", planName: "Pro", planPrice: 150 },
       ],
     },
   ];
-
-  // Step visibility and button control
   function updateStep() {
-    // Hide all the steps
     steps.forEach((stepId) => {
       document.getElementById(stepId).classList.add("hidden");
     });
 
-    // Show the current step
     document.getElementById(steps[currentStep]).classList.remove("hidden");
 
-    // Hide all Next buttons and confirm button
-    nextStepBtn.style.display = "none";
-    nextStepBtn1.style.display = "none";
-    nextStepBtn2.style.display = "none";
-    goBackBtn1.style.display = "none";
-    goBackBtn2.style.display = "none";
-    goBackBtn3.style.display = "none";
-    confirmBtn.style.display = "none";
+    document.getElementById("goBackBtn1").classList.add("hidden");
+    document.getElementById("goBackBtn2").classList.add("hidden");
+    document.getElementById("goBackBtn3").classList.add("hidden");
+    document.getElementById("nextStepBtn").classList.add("hidden");
+    document.getElementById("nextStepBtn1").classList.add("hidden");
+    document.getElementById("nextStepBtn2").classList.add("hidden");
+    document.getElementById("confirmBtn").classList.add("hidden");
 
-    // Show the relevant "Next Step" and "Go Back" buttons based on currentStep
     if (currentStep === 0) {
-      nextStepBtn.style.display = "inline-block"; // Show "Next Step"
-      nextStepBtn.disabled = false; // Enable nextStepBtn when on Step 0
+      document.getElementById("nextStepBtn").classList.remove("hidden");
     } else if (currentStep === 1) {
-      nextStepBtn1.style.display = "inline-block"; // Show "Next Step 1"
-      goBackBtn1.style.display = "inline-block"; // Show "Go Back"
-      nextStepBtn1.disabled = false; // Enable nextStepBtn1 once a plan is selected
+      document.getElementById("goBackBtn1").classList.remove("hidden");
+      document.getElementById("nextStepBtn1").classList.remove("hidden");
     } else if (currentStep === 2) {
-      nextStepBtn2.style.display = "inline-block"; // Show "Next Step 2"
-      goBackBtn2.style.display = "inline-block"; // Show "Go Back 2"
-      nextStepBtn2.disabled = false; // Enable nextStepBtn2 once a plan is selected
+      document.getElementById("goBackBtn2").classList.remove("hidden");
+      document.getElementById("nextStepBtn2").classList.remove("hidden");
     } else if (currentStep === 3) {
-      confirmBtn.style.display = "inline-block"; // Show "Confirm" button
-      goBackBtn3.style.display = "inline-block"; // Show "Go Back 3"
+      document.getElementById("goBackBtn3").classList.remove("hidden");
+      document.getElementById("confirmBtn").classList.remove("hidden");
     }
   }
 
-  // Form validation function with red border for invalid fields
   function validateForm() {
     let isValid = true;
 
-    // Personal Info Validation
     const nameId = document.getElementById("nameId");
     const emailId = document.getElementById("emailId");
     const phoneId = document.getElementById("phoneId");
@@ -108,46 +95,42 @@ document.addEventListener("DOMContentLoaded", function () {
     const emailError = document.getElementById("emailError");
     const phoneError = document.getElementById("phoneError");
 
-    // Validate Name
     if (!nameId.value.trim()) {
       nameError.textContent = "This field is required";
       nameError.classList.remove("hidden");
-      nameId.classList.add("error-border"); // Add red border
+      nameId.classList.add("error-border");
       isValid = false;
     } else {
       nameError.textContent = "";
       nameError.classList.add("hidden");
-      nameId.classList.remove("error-border"); // Remove red border
+      nameId.classList.remove("error-border");
     }
 
-    // Validate Email
     if (!emailId.value.trim()) {
       emailError.textContent = "This field is required";
       emailError.classList.remove("hidden");
-      emailId.classList.add("error-border"); // Add red border
+      emailId.classList.add("error-border");
       isValid = false;
     } else {
       emailError.textContent = "";
       emailError.classList.add("hidden");
-      emailId.classList.remove("error-border"); // Remove red border
+      emailId.classList.remove("error-border");
     }
 
-    // Validate Phone
     if (!phoneId.value.trim()) {
       phoneError.textContent = "This field is required";
       phoneError.classList.remove("hidden");
-      phoneId.classList.add("error-border"); // Add red border
+      phoneId.classList.add("error-border");
       isValid = false;
     } else {
       phoneError.textContent = "";
       phoneError.classList.add("hidden");
-      phoneId.classList.remove("error-border"); // Remove red border
+      phoneId.classList.remove("error-border");
     }
 
     return isValid;
   }
 
-  // Toggle between monthly and yearly plans
   function toggleBilling() {
     const monthlyPlan = document.getElementById("monthly-plan");
     const yearlyPlan = document.getElementById("yearly-plan");
@@ -175,7 +158,6 @@ document.addEventListener("DOMContentLoaded", function () {
     toggleBilling();
   }
 
-  // Handle plan selection
   function updateSelectedPlan() {
     const selectedRadio = document.querySelector("input[type='radio']:checked");
     if (selectedRadio) {
@@ -189,13 +171,12 @@ document.addEventListener("DOMContentLoaded", function () {
       if (selectedPlan) {
         selectedPlanPrice = selectedPlan.planPrice;
         selectedPlanName = selectedPlan.planName;
-        nextStepBtn.disabled = false; // Enable nextStepBtn once a plan is selected
-        nextStepBtn1.disabled = false; // Enable nextStepBtn1 once a plan is selected
+        nextStepBtn.disabled = false;
+        nextStepBtn1.disabled = false;
       }
     }
   }
 
-  // Add event listeners for plan selection
   const plans = document.querySelectorAll("input[type='radio']");
   plans.forEach((radio) => {
     radio.addEventListener("change", () => {
@@ -203,7 +184,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Handle add-ons selection
   function updateAddons() {
     selectedAddons = [];
     additionalCost = 0;
@@ -226,12 +206,11 @@ document.addEventListener("DOMContentLoaded", function () {
     addon.addEventListener("change", updateAddons);
   });
 
-  // Button clicks for moving to the next step
   if (nextStepBtn) {
     nextStepBtn.addEventListener("click", () => {
       if (currentStep === 0) {
         if (!validateForm()) {
-          return; // Stop if validation fails
+          return;
         }
         currentStep = 1;
         updateStep();
@@ -242,7 +221,7 @@ document.addEventListener("DOMContentLoaded", function () {
   if (nextStepBtn1) {
     nextStepBtn1.addEventListener("click", () => {
       if (currentStep === 1) {
-        currentStep = 2; // Proceed to Step 2
+        currentStep = 2;
         updateStep();
       }
     });
@@ -251,14 +230,13 @@ document.addEventListener("DOMContentLoaded", function () {
   if (nextStepBtn2) {
     nextStepBtn2.addEventListener("click", () => {
       if (currentStep === 2) {
-        currentStep = 3; // Proceed to Step 3 (Summary)
+        currentStep = 3;
         updateStep();
-        renderSummary(); // Make sure to render the summary after step 3
+        renderSummary();
       }
     });
   }
 
-  // Go Back button clicks
   if (goBackBtn1) {
     goBackBtn1.addEventListener("click", () => {
       if (currentStep === 1) {
@@ -286,11 +264,10 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Confirm button click to go to Step 5
   if (confirmBtn) {
     confirmBtn.addEventListener("click", () => {
-      currentStep = 4; // Proceed to Step 5 (Thank You)
-      updateStep(); // Move to Step 5
+      currentStep = 4;
+      updateStep();
     });
   }
 
